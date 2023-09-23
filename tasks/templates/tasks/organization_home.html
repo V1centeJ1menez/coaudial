@@ -1,0 +1,13 @@
+{% extends "tasks/base_home.html" %}
+
+{% block title %}
+  Home - {{ user.username }}
+{% endblock %}
+
+{% block content%}
+
+<h1>{{user.username}}</h1>
+
+<p> Este es la organizaciones {{user.username}}</p>
+
+{% endblock %}

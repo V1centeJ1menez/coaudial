@@ -2,11 +2,10 @@ from django.urls import path
 from tasks import views
 
 urlpatterns = [
-    path("", views.main),
-    path("signup/", views.signup),
+    path("", views.main, name='main'),
+    path("signup/", views.signup, name="signup"),
     path("login/", views.login, name="login"),
     path("home/", views.home,name="home"),
-    path("orgPage/", views.orgPage,name="orgPage"),
-    path("userPage/", views.userPage, name="userPage"),
-     path("courses/", views.courses,name="courses"),
+    path("courses/", views.courses,name="courses"),
+    path('<str:username>/', views.profile, name='profile'),
 ]
