@@ -23,12 +23,12 @@ def signup(request):
             if user.user_type == 1:
 
                 Normal.objects.create(user=user)
-                return redirect('normal_home')
+                return render(request, "tasks/home.html")
 
             else:
 
                 Organizacion.objects.create(user=user)
-                return redirect('organizacion_home')
+                return render(request, "tasks/home.html")
             
         else:
             print(form.errors)
@@ -55,6 +55,6 @@ def profile(request, username):
     else:
         return render(request, "tasks/organization_home.html", {"user": user})
 
-def courses(request):
+def cursos(request):
 
-    return render(request, 'tasks/courses.html')
+    return render(request, 'tasks/cursos.html')

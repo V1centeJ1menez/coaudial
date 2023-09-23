@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-</head>
-<body>
+{% extends "tasks/base_home.html" %}
 
-    <h2>Registro</h2>
-    {% if form.errors %}
-
-    <p style="color: red;"> Por favor revisa este campo</p>
-
-    {% endif %}
-
-    <form action="{% url 'signup' %}" method="POST">{% csrf_token %}
-
-      {{ register_form.as_p }}
-      
-      <input type="submit" value="Registrarse">
-
-    </form>
+{% block title %}
+  Registro
+{% endblock %}
 
 
-</body>
-</html>
+{% block content%}
+
+<h2>Registro</h2>
+{% if form.errors %}
+
+<p style="color: red;"> Por favor revisa este campo</p>
+
+{% endif %}
+
+<form action="{% url 'signup' %}" method="POST">{% csrf_token %}
+
+  {{ register_form.as_p }}
+  
+  <input type="submit" value="Registrarse">
+
+</form>
+
+
+{% endblock %}
