@@ -10,5 +10,15 @@
 <h1>IndexPage</h1>
 <p> Esta página recibe al cliente. Le ofrece registrarse o iniciar sesión</p>
 
+<a href="{% url 'login' %}">
+  <button type="button">Ingresa</button>
+</a>
+
+<br>
+
+<a href="{% url 'signup' %}">
+  <button type="button">Registro</button>
+</a>
+
 
 {% endblock %}

@@ -43,9 +43,9 @@ def login(request):
     
     return render(request, 'tasks/login.html')
 
-def main(request):
+def index(request):
 
-    return render(request, 'tasks/main.html')
+    return render(request, 'tasks/index.html')
 
 @login_required
 def profile(request, username):
