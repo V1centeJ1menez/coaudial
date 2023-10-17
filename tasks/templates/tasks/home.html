@@ -10,5 +10,12 @@
 <h1>Pagina Principal</h1>
 <p> Esta página recibe a los usuarios normales. Los usuarios pueden ver las organizaciones recomendadas</p>
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 {% endblock %}

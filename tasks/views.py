@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, HttpResponse
+from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from .models import Normal, Organizacion, CustomUser
 from .forms import CustomUserCreationForm
 
@@ -18,6 +19,8 @@ def signup(request):
         if form.is_valid():
 
             user = form.save()
+            tipo_usuario = 'normal' if user.user_type == 1 else 'organizacion'
+            messages.success(request, f'El usuario {tipo_usuario} {user.username} fue correctamente registrado')
 
             if user.user_type == 1:
 
@@ -51,13 +54,10 @@ def login_view(request):
             login(request, user)
 
             if hasattr(user, 'normal'):
-                return HttpResponse("Usuario del tipo 1 autenticado exitosamente")
-            
-            elif hasattr(user, 'organizacion'):
-                return HttpResponse("Usuario del tipo 2 autenticado exitosamente")
-            
+                messages.success(request, f'Bienvenido de vuelta {user.username}. ¡Esperamos que disfrutes tu tiempo aquí!')
             else:
-                return HttpResponse("Usuario autenticado exitosamente")
+                messages.success(request, f'La organización {user.username} ha iniciado sesión exitosamente. ¡Estamos emocionados de ver las contribuciones que harás a nuestra comunidad!')
+            return redirect('home')
             
         else:
             return HttpResponse("Credenciales inválidas")
@@ -65,6 +65,12 @@ def login_view(request):
     else:
         # Renderizar la plantilla de inicio de sesión aquí
         return render(request, 'tasks/login.html')
+
+def logout_view(request):
+    username = request.user.username
+    logout(request)
+    messages.success(request, f'Has cerrado sesión exitosamente, {username}. ¡Esperamos verte de nuevo pronto!')
+    return redirect('index')
 
 
 def index(request):

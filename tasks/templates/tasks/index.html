@@ -4,21 +4,16 @@
   Coaudial
 {% endblock %}
 
-
 {% block content%}
 
-<h1>IndexPage</h1>
-<p> Esta página recibe al cliente. Le ofrece registrarse o iniciar sesión</p>
+<h1>¡Bienvenido a Coaudial!</h1>
 
-<a href="{% url 'login' %}">
-  <button type="button">Ingresa</button>
-</a>
-
-<br>
-
-<a href="{% url 'signup' %}">
-  <button type="button">Registro</button>
-</a>
-
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 {% endblock %}

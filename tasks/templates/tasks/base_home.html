@@ -9,6 +9,19 @@
 <body>
     <header>
         <!-- Aquí puedes poner tu barra de navegación, logo, etc. -->
+        {% if user.is_authenticated %}
+            <p>Bienvenido, {{ user.username }}!</p>
+            <a href="{% url 'logout_view' %}">
+                <button type="button">Cerrar sesión</button>
+            </a>
+        {% else %}
+            <a href="{% url 'login' %}">
+                <button type="button">Iniciar sesión</button>
+            </a>
+            <a href="{% url 'signup' %}">
+                <button type="button">Registro</button>
+            </a>
+        {% endif %}
     </header>
 
     <main>

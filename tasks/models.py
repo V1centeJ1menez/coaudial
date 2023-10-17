@@ -7,7 +7,7 @@ class CustomUser(AbstractUser):
         (1, 'normal'),
         (2, 'organizacion'),
     )
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, null="True", blank="True")
     email = models.EmailField(max_length=254)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
