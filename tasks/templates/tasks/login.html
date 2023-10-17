@@ -1,4 +1,4 @@
-{% extends "tasks/base_home.html" %}
+{% extends "tasks/base_auth.html" %}
 
 {% block title %}
     Coaudial - Ingresa
@@ -21,6 +21,10 @@
     <input type="submit" value="Iniciar sesión">
     
 </form>
+</a>
+<a href="{% url 'signup' %}">
+    <button type="button">Registro</button>
+</a>
 
 
 {% endblock %}

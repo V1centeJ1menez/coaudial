@@ -9,19 +9,22 @@
 <body>
     <header>
         <!-- Aquí puedes poner tu barra de navegación, logo, etc. -->
-        {% if user.is_authenticated %}
-            <p>Bienvenido, {{ user.username }}!</p>
-            <a href="{% url 'logout_view' %}">
-                <button type="button">Cerrar sesión</button>
-            </a>
-        {% else %}
-            <a href="{% url 'login' %}">
-                <button type="button">Iniciar sesión</button>
-            </a>
-            <a href="{% url 'signup' %}">
-                <button type="button">Registro</button>
-            </a>
-        {% endif %}
+        {% block header %}
+        <!-- Contenido del encabezado por defecto -->
+        {% endblock %}
+        <a href="{% url 'admin:index' %}">
+            <button type="button">AdminPage</button>
+        </a>
+        <a href="{% url 'index' %}">
+            <button type="button">Index</button>
+        </a>
+        <a href="{% url 'home' %}">
+            <button type="button">Home</button>
+        </a>
+        <a href="{% url 'cursos' %}">
+            <button type="button">Cursos</button>
+        </a>
+
     </header>
 
     <main>

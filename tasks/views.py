@@ -20,26 +20,23 @@ def signup(request):
 
             user = form.save()
             tipo_usuario = 'normal' if user.user_type == 1 else 'organizacion'
-            messages.success(request, f'El usuario {tipo_usuario} {user.username} fue correctamente registrado')
 
             if user.user_type == 1:
-
                 Normal.objects.create(user=user)
-                return render(request, "tasks/index.html")
 
             else:
-
                 Organizacion.objects.create(user=user)
-                return render(request, "tasks/index.html")
-            
+            messages.success(request, f'El usuario {tipo_usuario} {user.username} fue correctamente registrado')
+
+            return render(request, "tasks/index.html")
+        
         else:
             print(form.errors)
-        
+
     else:
-
         form = CustomUserCreationForm()
-
     return render(request, "tasks/signup.html", {"register_form":form})
+
 
 def login_view(request):
 
@@ -77,22 +74,46 @@ def index(request):
 
     return render(request, 'tasks/index.html')
 
-@login_required
+
+from django.http import HttpResponse
+from .models import CustomUser, Normal, Organizacion
+
+from django.http import HttpResponse
+from .models import CustomUser, Normal, Organizacion
+
+from django.http import HttpResponse
+from .models import CustomUser, Normal, Organizacion
+
 def profile(request, username):
-    user = get_object_or_404(CustomUser, username=username)
+    user = CustomUser.objects.get(username=username)
+
+    if not request.user.is_authenticated:
+        return HttpResponse("Usuario no registrado visitando un perfil")
 
     if request.user.username == username:
+
         if user.user_type == 1:
-            # Aquí puedes agregar el código para permitir a los usuarios normales editar su perfil
-            pass
+            normal_user = Normal.objects.get(user=user)
+            return HttpResponse("Usuario normal editando su perfil")
+        
+        elif user.user_type == 2:
+            org_user = Organizacion.objects.get(user=user)
+            return HttpResponse("Organización editando su perfil")
+        
         else:
-            # Aquí puedes agregar el código para permitir a las cuentas de organización editar su perfil
-            pass
+            return HttpResponse("Superusuario editando su perfil")
     else:
+
         if user.user_type == 1:
-            return render(request, "tasks/normal_home.html", {"user": user})
+            return HttpResponse("Visitando el perfil de un usuario normal")
+        
+        elif user.user_type == 2:
+            return HttpResponse("Visitando el perfil de una organización")
+        
         else:
-            return render(request, "tasks/organization_home.html", {"user": user})
+            return HttpResponse("Visitando el perfil de un superusuario")
+
+
 
 def cursos(request):
 

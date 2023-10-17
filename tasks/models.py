@@ -17,6 +17,15 @@ class CustomUser(AbstractUser):
 
 class Normal(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    
+    def delete(self, *args, **kwargs):
+        self.groups.clear()
+        super().delete(*args, **kwargs)
 
 class Organizacion(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+
+    def delete(self, *args, **kwargs):
+        self.groups.clear()
+        super().delete(*args, **kwargs)
+
