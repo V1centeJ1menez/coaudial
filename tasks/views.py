@@ -87,9 +87,11 @@ from .models import CustomUser, Normal, Organizacion
 def profile(request, username):
     user = CustomUser.objects.get(username=username)
 
+    # Para el caso que un cliente no registrado visite un perfil, ver si es necesario este caso
     if not request.user.is_authenticated:
         return HttpResponse("Usuario no registrado visitando un perfil")
 
+    # Para el caso de que un perfil visite su perfil
     if request.user.username == username:
 
         if user.user_type == 1:
@@ -102,6 +104,8 @@ def profile(request, username):
         
         else:
             return HttpResponse("Superusuario editando su perfil")
+        
+    # Para el caso de que un perfil visite otro que no es suyo
     else:
 
         if user.user_type == 1:
