@@ -10,5 +10,17 @@
 <h1>Ingreso</h1>
 <p> Esta página recibe al cliente para que inicie sesión</p>
 
+<br>
+
+<form method="post"> {% csrf_token %}
+
+    <label for="username">Nombre de usuario:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Contraseña:</label><br>
+    <input type="password" id="password" name="password"><br>
+    <input type="submit" value="Iniciar sesión">
+    
+</form>
+
 
 {% endblock %}
