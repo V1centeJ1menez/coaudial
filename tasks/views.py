@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Normal, Organizacion, CustomUser
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ChooseUserTypeForm
+from django.http import Http404
 
 # Create your views here.
 def home(request):
@@ -84,18 +85,17 @@ def profile(request, username):
     user = get_object_or_404(CustomUser, username=username)
 
     if request.user.is_authenticated and request.user.username == username:
-        if user.user_type == 1:
+        if user.user_type is None:
+            return redirect('choose_user_type')  # Redirige al usuario a la vista donde puede elegir un tipo de usuario
+        elif user.user_type == 1:
+            print("si")
             normal_user = get_object_or_404(Normal, user=user)
             return render(request, 'tasks/perfiles/normal_home.html', {'user': normal_user, 'user_type': 'normal'})
-        
         elif user.user_type == 2:
             org_user = get_object_or_404(Organizacion, user=user)
             return render(request, 'tasks/perfiles/organization_home.html', {'user': org_user, 'user_type': 'organizacion'})
-        
-        else:
-            return HttpResponse("Hola")
-        
     else:
+        
         if user.user_type == 1:
             normal_user = get_object_or_404(Normal, user=user)
             return render(request, 'tasks/perfiles/normal_profile.html', {'user': normal_user, 'user_type': 'normal'})
@@ -104,8 +104,24 @@ def profile(request, username):
             org_user = get_object_or_404(Organizacion, user=user)
             return render(request, 'tasks/perfiles/organization_profile.html', {'user': org_user, 'user_type': 'organizacion'})
         
-        else:
-            return HttpResponse('hola')
+        elif user.user_type is None:    
+            print("si")
+            raise Http404("El perfil no existe.")  # Muestra un error 404 si el usuario no ha definido un tipo de usuario
+    
+@login_required
+def choose_user_type(request):
+    if request.method == 'POST':
+        form = ChooseUserTypeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            if request.user.user_type == 1:  # Si el usuario ha elegido el tipo de usuario "normal"
+                Normal.objects.get_or_create(user=request.user)  # Crea una instancia de Normal si no existe
+            messages.success(request, 'Tu tipo de usuario ha sido actualizado.')
+            return redirect('profile', username=request.user.username)
+    else:
+        form = ChooseUserTypeForm(instance=request.user)
+
+    return render(request, 'tasks/choose_user_type.html', {'form': form})
 
 @login_required
 def cursos(request):

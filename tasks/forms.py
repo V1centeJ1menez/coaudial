@@ -6,3 +6,8 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = UserCreationForm.Meta.fields + ('user_type', 'email', 'first_name', 'last_name',)
+
+class ChooseUserTypeForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['user_type']
