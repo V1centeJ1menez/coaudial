@@ -1,5 +1,7 @@
 from django.urls import path
 from tasks import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.index, name='index'),
@@ -10,5 +12,6 @@ urlpatterns = [
     path("cursos/", views.cursos,name="cursos"),
     path('choose_user_type/', views.choose_user_type, name='choose_user_type'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
+    path('<str:username>/edit_template/', views.edit_organization_template, name='edit_organization_template'),
     path('<str:username>/', views.profile, name='profile'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

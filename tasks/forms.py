@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from .models import CustomUser
+from .models import CustomUser, Organizacion
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -49,3 +49,8 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
     )
+
+class EditOrganizationTemplateForm(forms.ModelForm):
+    class Meta:
+        model = Organizacion
+        fields = ['banner', 'title', 'subtitle', 'foundation_image', 'about', 'additional_info', 'redirect_url', 'footer']

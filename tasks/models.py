@@ -24,8 +24,17 @@ class Normal(models.Model):
 
 class Organizacion(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    banner = models.ImageField(upload_to='banners/', null=True, blank=True)
+    title = models.CharField(max_length=200, null=True, blank=True)
+    subtitle = models.CharField(max_length=200, null=True, blank=True)
+    foundation_image = models.ImageField(upload_to='foundation_images/', null=True, blank=True)
+    about = models.TextField(null=True, blank=True)
+    additional_info = models.TextField(null=True, blank=True)
+    redirect_url = models.URLField(max_length=200, null=True, blank=True)
+    footer = models.TextField(null=True, blank=True)
 
     def delete(self, *args, **kwargs):
         self.groups.clear()
         super().delete(*args, **kwargs)
+
 

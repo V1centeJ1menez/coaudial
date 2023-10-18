@@ -1,0 +1,17 @@
+{% extends "../bases/profile_base.html" %}
+
+{% block title %}
+  Editar Plantilla - {{ user.user.username}}
+{% endblock %}
+
+{% block header %}
+  <h1> Editar Plantilla </h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+  </form>
+{% endblock %}

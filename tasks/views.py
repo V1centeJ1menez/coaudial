@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Normal, Organizacion, CustomUser
-from .forms import CustomUserCreationForm, ChooseUserTypeForm, EditProfileForm, CustomPasswordChangeForm
+from .forms import CustomUserCreationForm, ChooseUserTypeForm, EditProfileForm, CustomPasswordChangeForm, EditOrganizationTemplateForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from django.http import Http404
+from django.http import Http404, HttpResponseForbidden
 
 # Create your views here.
 def home(request):
@@ -77,28 +77,26 @@ def index(request):
 
     return render(request, 'tasks/index.html')
 
-@login_required
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
 def profile(request, username):
     user = get_object_or_404(CustomUser, username=username)
 
     if request.user.is_authenticated and (request.user.username == username) and (request.user.is_staff or request.user.is_superuser):
-        
         return HttpResponse("Eres admin papu, don worri")
-    # Haz algo aquí
 
     elif request.user.is_authenticated and request.user.username == username:
         if user.user_type is None:
-            return redirect('choose_user_type')  # Redirige al usuario a la vista donde puede elegir un tipo de usuario
+            return redirect('choose_user_type')
         elif user.user_type == 1:
-            print("si")
             normal_user = get_object_or_404(Normal, user=user)
             return render(request, 'tasks/perfiles/normal_home.html', {'user': normal_user, 'user_type': 'normal'})
         elif user.user_type == 2:
             org_user = get_object_or_404(Organizacion, user=user)
             return render(request, 'tasks/perfiles/organization_home.html', {'user': org_user, 'user_type': 'organizacion'})
     
-    else:
-        
+    else:  # El usuario no está autenticado o no es el propietario del perfil
         if user.user_type == 1:
             normal_user = get_object_or_404(Normal, user=user)
             return render(request, 'tasks/perfiles/normal_profile.html', {'user': normal_user, 'user_type': 'normal'})
@@ -108,9 +106,9 @@ def profile(request, username):
             return render(request, 'tasks/perfiles/organization_profile.html', {'user': org_user, 'user_type': 'organizacion'})
         
         elif user.user_type is None:    
-            print("si")
-            raise Http404("El perfil no existe.")  # Muestra un error 404 si el usuario no ha definido un tipo de usuario
-    
+            raise Http404("El perfil no existe.")
+
+
 @login_required
 def choose_user_type(request):
     if request.method == 'POST':
@@ -147,7 +145,19 @@ def edit_profile(request):
     return render(request, 'tasks/perfiles/edit_profile.html', {'form': form, 'password_form': password_form})
 
 
-
+@login_required
+def edit_organization_template(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    if request.user != user or user.user_type != 2:
+        return HttpResponseForbidden("No tienes permiso para editar esta plantilla.")
+    if request.method == 'POST':
+        form = EditOrganizationTemplateForm(request.POST, request.FILES, instance=user.organizacion)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', username=username)
+    else:
+        form = EditOrganizationTemplateForm(instance=user.organizacion)
+    return render(request, 'tasks/perfiles/edit_organization_template.html', {'form': form})
 
 
 @login_required

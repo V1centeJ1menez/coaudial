@@ -6,12 +6,6 @@
 
 {% block header %}
   <h1> Perfil </h1>
-{% endblock %}
-
-{% block content %}
-  <h1>{{ user.user.username }}</h1>
-
-  <p> Este es el perfil de la organización {{ user.user.username }}</p>
 
   <!-- Botones de navegación -->
   {% if request.path != '/home/' %}
@@ -31,4 +25,46 @@
         <button type="button">AdminPage</button>
     </a>
   {% endif %}
+  
+{% endblock %}
+
+{% block content %}
+  <!-- Banner -->
+  {% if user.banner %}
+    <div>
+      <img src="{{ user.banner.url }}" alt="Banner">
+    </div>
+  {% endif %}
+
+  <!-- Título y subtítulo -->
+  <h1>{{ user.title }}</h1>
+  <h2>{{ user.subtitle }}</h2>
+
+  <!-- Nombre de usuario -->
+  <h1>{{ user.user.username }}</h1>
+
+  <!-- Imagen de la fundación -->
+  {% if user.foundation_image %}
+    <div>
+      <img src="{{ user.foundation_image.url }}" alt="Imagen de la fundación">
+    </div>
+  {% endif %}
+
+  <!-- Acerca de la organización -->
+  <p>{{ user.about }}</p>
+
+  <!-- Información adicional -->
+  <p>{{ user.additional_info }}</p>
+
+  <!-- Botón de redirección -->
+  {% if user.redirect_url %}
+    <a href="{{ user.redirect_url }}">
+      <button type="button">Visita nuestra página web</button>
+    </a>
+  {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+   {{ user.footer }}
 {% endblock %}

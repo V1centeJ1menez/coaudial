@@ -18,6 +18,11 @@
     <button type="button">Editar Perfil</button>
   </a>
 
+  <!-- Opción para editar la plantilla -->
+  <a href="{% url 'edit_organization_template' user.user.username %}">
+    <button type="button">Modificar Plantilla</button>
+  </a>
+
   <!-- Botones de navegación -->
   {% if request.path != '/home/' %}
     <a href="{% url 'home' %}">
