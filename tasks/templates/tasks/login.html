@@ -1,9 +1,15 @@
-{% extends "tasks/base_auth.html" %}
+{% extends "tasks/bases/header_base.html" %}
 
 {% block title %}
     Coaudial - Ingresa
 {% endblock %}
 
+{% block header%}
+
+<img src="../../static/tasks/img/coaudial_icon.ico" alt="Icono de coaudial">
+<h1> Coaudial</h1>
+
+{% endblock %}
 
 {% block content%}
 
@@ -22,9 +28,5 @@
     
 </form>
 </a>
-<a href="{% url 'signup' %}">
-    <button type="button">Registro</button>
-</a>
-
 
 {% endblock %}

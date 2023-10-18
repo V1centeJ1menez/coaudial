@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <!-- Aquí puedes poner tu barra de navegación, logo, etc. -->
+        {% block header %}
+        <!-- Contenido del encabezado por defecto -->
+        {% endblock %}
+       
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Contenido principal por defecto -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Aquí puedes poner tu pie de página -->
+    </footer>
+</body>
+</html>

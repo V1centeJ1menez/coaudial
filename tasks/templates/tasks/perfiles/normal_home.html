@@ -1,0 +1,43 @@
+{% extends "../bases/header_base.html" %}
+
+{% block title %}
+  Mi Perfil - {{ user.user.username }}
+{% endblock %}
+
+{% block header %}
+  <h1> Mi Perfil </h1>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ user.user.username }}</h1>
+
+  {% if user.user.user_type == 1 %}
+    <p> Este es mi perfil de usuario normal </p>
+  {% elif user.user.user_type == 2 %}
+    <p> Este es mi perfil de organización </p>
+  {% else %}
+    <p> No has especificado que tipo de usuario eres </p>
+  {% endif %}
+
+  <!-- Opciones de edición -->
+
+
+  <!-- Botones de navegación -->
+  {% if request.path != '/home/' %}
+    <a href="{% url 'home' %}">
+        <button type="button">Home</button>
+    </a>
+  {% endif %}
+  
+  {% if request.path != '/cursos/' %}
+    <a href="{% url 'cursos' %}">
+        <button type="button">Cursos</button>
+    </a>
+  {% endif %}
+  
+  {% if request.path != '/admin/' %}
+    <a href="{% url 'admin:index' %}">
+        <button type="button">AdminPage</button>
+    </a>
+  {% endif %}
+{% endblock %}

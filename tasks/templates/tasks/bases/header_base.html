@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{% static 'tasks/img/coaudial_icon.ico' %}" >
+</head>
+<body>
+    <header>
+        <!-- Aquí puedes poner tu barra de navegación, logo, etc. -->
+        {% block header %}
+        <!-- Contenido del encabezado por defecto -->
+        {% endblock %}
+    
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout_view' %}">
+            <button type="button">Cerrar sesión</button>
+        </a>
+        <a href="{% url 'profile' request.user.username %}">
+            <button type="button">Mi Perfil</button>
+        </a>
+        {% else %}
+            {% if request.path != '/login/' %}
+            <a href="{% url 'login' %}">
+                <button type="button">Iniciar sesión</button>
+            </a>
+            {% endif %}
+            {% if request.path != '/signup/' %}
+            <a href="{% url 'signup' %}">
+                <button type="button">Registro</button>
+            </a>
+            {% endif %}
+        {% endif %}
+        
+        {% if request.path != '/' %}
+        <a href="{% url 'index' %}">
+            <button type="button">Index</button>
+        </a>
+        {% endif %}
+        
+        {% if request.path != '/home/' %}
+        <a href="{% url 'home' %}">
+            <button type="button">Home</button>
+        </a>
+        {% endif %}
+        
+        {% if request.path != '/cursos/' %}
+        <a href="{% url 'cursos' %}">
+            <button type="button">Cursos</button>
+        </a>
+        {% endif %}
+        
+        {% if request.path != '/admin/' %}
+        <a href="{% url 'admin:index' %}">
+            <button type="button">AdminPage</button>
+        </a>
+        {% endif %}
+    
+    </header>
+    
+
+    <main>
+        {% block content %}
+        <!-- El contenido específico de cada página irá aquí -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        <!-- Aquí puedes poner tu pie de página -->
+        {% endblock %}
+    </footer>
+</body>
+</html>

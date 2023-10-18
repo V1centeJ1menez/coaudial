@@ -1,12 +1,20 @@
-{% extends "tasks/base_barra.html" %}
+{% extends "tasks/bases/header_base.html" %}
 
 {% block title %}
   Coaudial
 {% endblock %}
 
+{% block header%}
+
+<img src="../../static/tasks/img/coaudial_icon.ico" alt="Icono de coaudial">
+<h1> Coaudial</h1>
+
+{% endblock %}
+
 {% block content%}
 
-<h1>¡Bienvenido a Coaudial!</h1>
+<h1>Con tu ayuda sobrellevamos la discapacidad</h1>
+<p> Transformando desafios en oportunidades, construyendo un mundo más inclusivo para todos</p>
 
 {% if messages %}
 <ul class="messages">

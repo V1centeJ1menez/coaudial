@@ -75,50 +75,39 @@ def index(request):
     return render(request, 'tasks/index.html')
 
 
-from django.http import HttpResponse
-from .models import CustomUser, Normal, Organizacion
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-from django.http import HttpResponse
-from .models import CustomUser, Normal, Organizacion
-
-from django.http import HttpResponse
-from .models import CustomUser, Normal, Organizacion
-
+@login_required
 def profile(request, username):
-    user = CustomUser.objects.get(username=username)
+    user = get_object_or_404(CustomUser, username=username)
 
-    # Para el caso que un cliente no registrado visite un perfil, ver si es necesario este caso
-    if not request.user.is_authenticated:
-        return HttpResponse("Usuario no registrado visitando un perfil")
-
-    # Para el caso de que un perfil visite su perfil
-    if request.user.username == username:
-
+    if request.user.is_authenticated and request.user.username == username:
         if user.user_type == 1:
-            normal_user = Normal.objects.get(user=user)
-            return HttpResponse("Usuario normal editando su perfil")
+            normal_user = get_object_or_404(Normal, user=user)
+            return render(request, 'tasks/perfiles/normal_home.html', {'user': normal_user, 'user_type': 'normal'})
         
         elif user.user_type == 2:
-            org_user = Organizacion.objects.get(user=user)
-            return HttpResponse("Organización editando su perfil")
+            org_user = get_object_or_404(Organizacion, user=user)
+            return render(request, 'tasks/perfiles/organization_home.html', {'user': org_user, 'user_type': 'organizacion'})
         
         else:
-            return HttpResponse("Superusuario editando su perfil")
+            return HttpResponse("Hola")
         
-    # Para el caso de que un perfil visite otro que no es suyo
     else:
-
         if user.user_type == 1:
-            return HttpResponse("Visitando el perfil de un usuario normal")
+            normal_user = get_object_or_404(Normal, user=user)
+            return render(request, 'tasks/perfiles/normal_profile.html', {'user': normal_user, 'user_type': 'normal'})
         
         elif user.user_type == 2:
-            return HttpResponse("Visitando el perfil de una organización")
+            org_user = get_object_or_404(Organizacion, user=user)
+            return render(request, 'tasks/perfiles/organization_profile.html', {'user': org_user, 'user_type': 'organizacion'})
         
         else:
-            return HttpResponse("Visitando el perfil de un superusuario")
+            return HttpResponse('hola')
 
-
-
+@login_required
 def cursos(request):
-
-    return render(request, 'tasks/cursos.html')
+    # Aqui necesito ponerle mas cosas, ya que se divide en mas secciones este apartado
+    return render(request, 'tasks/aprendizaje/cursos.html')

@@ -1,0 +1,34 @@
+{% extends "../bases/profile_base.html" %}
+
+{% block title %}
+  Perfil - {{ user.user.username }}
+{% endblock %}
+
+{% block header %}
+  <h1> Perfil </h1>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ user.user.username }}</h1>
+
+  <p> Este es el perfil del usuario normal {{ user.user.username }}</p>
+
+  <!-- Botones de navegación -->
+  {% if request.path != '/home/' %}
+    <a href="{% url 'home' %}">
+        <button type="button">Home</button>
+    </a>
+  {% endif %}
+  
+  {% if request.path != '/cursos/' %}
+    <a href="{% url 'cursos' %}">
+        <button type="button">Cursos</button>
+    </a>
+  {% endif %}
+  
+  {% if request.path != '/admin/' %}
+    <a href="{% url 'admin:index' %}">
+        <button type="button">AdminPage</button>
+    </a>
+  {% endif %}
+{% endblock %}
