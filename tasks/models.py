@@ -10,7 +10,7 @@ class CustomUser(AbstractUser):
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, null="True", blank="True")
     email = models.EmailField(max_length=254)
     first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30, null=True, blank=True)
     groups = models.ManyToManyField(Group, related_name="customuser_groups")
     user_permissions = models.ManyToManyField(Permission, related_name="customuser_user_permissions")
 

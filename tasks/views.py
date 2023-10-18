@@ -3,7 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Normal, Organizacion, CustomUser
-from .forms import CustomUserCreationForm, ChooseUserTypeForm
+from .forms import CustomUserCreationForm, ChooseUserTypeForm, EditProfileForm, CustomPasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from django.http import Http404
 
 # Create your views here.
@@ -75,16 +77,16 @@ def index(request):
 
     return render(request, 'tasks/index.html')
 
-
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-
 @login_required
 def profile(request, username):
     user = get_object_or_404(CustomUser, username=username)
 
-    if request.user.is_authenticated and request.user.username == username:
+    if request.user.is_authenticated and (request.user.username == username) and (request.user.is_staff or request.user.is_superuser):
+        
+        return HttpResponse("Eres admin papu, don worri")
+    # Haz algo aquí
+
+    elif request.user.is_authenticated and request.user.username == username:
         if user.user_type is None:
             return redirect('choose_user_type')  # Redirige al usuario a la vista donde puede elegir un tipo de usuario
         elif user.user_type == 1:
@@ -94,6 +96,7 @@ def profile(request, username):
         elif user.user_type == 2:
             org_user = get_object_or_404(Organizacion, user=user)
             return render(request, 'tasks/perfiles/organization_home.html', {'user': org_user, 'user_type': 'organizacion'})
+    
     else:
         
         if user.user_type == 1:
@@ -121,7 +124,31 @@ def choose_user_type(request):
     else:
         form = ChooseUserTypeForm(instance=request.user)
 
-    return render(request, 'tasks/choose_user_type.html', {'form': form})
+    return render(request, 'tasks/perfiles/choose_user_type.html', {'form': form})
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if 'submit-profile' in request.POST:
+            if form.is_valid():
+                form.save()
+                return redirect('profile', username=request.user.username)
+        elif 'submit-password' in request.POST:
+            password_form = CustomPasswordChangeForm(request.user, request.POST)
+            if password_form.is_valid():
+                user = password_form.save()
+                update_session_auth_hash(request, user)  # Actualiza la sesión para que no sea necesario volver a iniciar sesión
+                return redirect('profile', username=request.user.username)
+    else:
+        form = EditProfileForm(instance=request.user)
+        password_form = CustomPasswordChangeForm(request.user)
+    return render(request, 'tasks/perfiles/edit_profile.html', {'form': form, 'password_form': password_form})
+
+
+
+
 
 @login_required
 def cursos(request):

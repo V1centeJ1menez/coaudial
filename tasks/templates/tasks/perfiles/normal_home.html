@@ -1,7 +1,7 @@
 {% extends "../bases/profile_base.html" %}
 
 {% block title %}
-  Mi Perfil - {{ user.user.username }}
+  Mi Perfil - {{ user.user.first_name }}
 {% endblock %}
 
 {% block header %}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-  <h1>{{ user.user.username }}</h1>
+  <h1>{{ user.user.first_name}}</h1>
 
   {% if user.user.user_type == 1 %}
     <p> Este es mi perfil de usuario normal </p>
@@ -20,7 +20,9 @@
   {% endif %}
 
   <!-- Opciones de edición -->
-
+  <a href="{% url 'edit_profile' %}">
+    <button type="button">Editar Perfil</button>
+  </a>
 
   <!-- Botones de navegación -->
   {% if request.path != '/home/' %}
