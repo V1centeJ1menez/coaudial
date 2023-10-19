@@ -6,6 +6,7 @@
 
 {% block header %}
   <h1> Mi Perfil </h1>
+  
 {% endblock %}
 
 {% block content %}
@@ -23,22 +24,8 @@
     <button type="button">Modificar Plantilla</button>
   </a>
 
-  <!-- Botones de navegación -->
-  {% if request.path != '/home/' %}
-    <a href="{% url 'home' %}">
-        <button type="button">Home</button>
-    </a>
-  {% endif %}
-  
-  {% if request.path != '/cursos/' %}
-    <a href="{% url 'cursos' %}">
-        <button type="button">Cursos</button>
-    </a>
-  {% endif %}
-  
-  {% if request.path != '/admin/' %}
-    <a href="{% url 'admin:index' %}">
-        <button type="button">AdminPage</button>
-    </a>
-  {% endif %}
+  <a href="{% url 'profile_preview' user.user.username %}">
+    <button type="button">Vista previa del perfil público</button>
+  </a>
+
 {% endblock %}

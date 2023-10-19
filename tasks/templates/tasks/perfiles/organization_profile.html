@@ -6,25 +6,9 @@
 
 {% block header %}
   <h1> Perfil </h1>
-
-  <!-- Botones de navegación -->
-  {% if request.path != '/home/' %}
-    <a href="{% url 'home' %}">
-        <button type="button">Home</button>
-    </a>
-  {% endif %}
-  
-  {% if request.path != '/cursos/' %}
-    <a href="{% url 'cursos' %}">
-        <button type="button">Cursos</button>
-    </a>
-  {% endif %}
-  
-  {% if request.path != '/admin/' %}
-    <a href="{% url 'admin:index' %}">
-        <button type="button">AdminPage</button>
-    </a>
-  {% endif %}
+  <a href="{% url 'profile' request.user.username %}">
+    <button type="button">Mi Perfil</button>
+  </a>
   
 {% endblock %}
 

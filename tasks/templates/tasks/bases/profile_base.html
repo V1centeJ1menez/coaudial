@@ -5,6 +5,29 @@
 </head>
 <body>
     <header>
+        <a href="{% url 'logout_view' %}">
+            <button type="button">Cerrar sesión</button>
+        </a>
+
+                <!-- Botones de navegación -->
+        {% if request.path != '/home/' %}
+        <a href="{% url 'home' %}">
+            <button type="button">Home</button>
+        </a>
+        {% endif %}
+
+        {% if request.path != '/cursos/' %}
+        <a href="{% url 'cursos' %}">
+            <button type="button">Cursos</button>
+        </a>
+        {% endif %}
+
+        {% if request.path != '/admin/' %}
+        <a href="{% url 'admin:index' %}">
+            <button type="button">AdminPage</button>
+        </a>
+        {% endif %}
+
         <!-- Aquí puedes poner tu barra de navegación, logo, etc. -->
         {% block header %}
         <!-- Contenido del encabezado por defecto -->

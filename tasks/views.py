@@ -80,33 +80,43 @@ def index(request):
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
-def profile(request, username):
+def profile(request, username, preview=False):
     user = get_object_or_404(CustomUser, username=username)
 
-    if request.user.is_authenticated and (request.user.username == username) and (request.user.is_staff or request.user.is_superuser):
-        return HttpResponse("Eres admin papu, don worri")
-
-    elif request.user.is_authenticated and request.user.username == username:
-        if user.user_type is None:
-            return redirect('choose_user_type')
-        elif user.user_type == 1:
-            normal_user = get_object_or_404(Normal, user=user)
-            return render(request, 'tasks/perfiles/normal_home.html', {'user': normal_user, 'user_type': 'normal'})
-        elif user.user_type == 2:
-            org_user = get_object_or_404(Organizacion, user=user)
-            return render(request, 'tasks/perfiles/organization_home.html', {'user': org_user, 'user_type': 'organizacion'})
     
-    else:  # El usuario no está autenticado o no es el propietario del perfil
-        if user.user_type == 1:
-            normal_user = get_object_or_404(Normal, user=user)
-            return render(request, 'tasks/perfiles/normal_profile.html', {'user': normal_user, 'user_type': 'normal'})
-        
-        elif user.user_type == 2:
+    if preview:
+        # Si estamos en modo de vista previa, mostramos el perfil público
+        if user.user_type == 2:  # Solo permitimos la vista previa para los usuarios de tipo "Organización"
             org_user = get_object_or_404(Organizacion, user=user)
             return render(request, 'tasks/perfiles/organization_profile.html', {'user': org_user, 'user_type': 'organizacion'})
+        else:
+            raise Http404("La vista previa no está disponible para este tipo de usuario.")
+    else:
+
+        if request.user.is_authenticated and (request.user.username == username) and (request.user.is_staff or request.user.is_superuser):
+            return HttpResponse("Eres admin papu, don worri")
+
+        elif request.user.is_authenticated and request.user.username == username:
+            if user.user_type is None:
+                return redirect('choose_user_type')
+            elif user.user_type == 1:
+                normal_user = get_object_or_404(Normal, user=user)
+                return render(request, 'tasks/perfiles/normal_home.html', {'user': normal_user, 'user_type': 'normal'})
+            elif user.user_type == 2:
+                org_user = get_object_or_404(Organizacion, user=user)
+                return render(request, 'tasks/perfiles/organization_home.html', {'user': org_user, 'user_type': 'organizacion'})
         
-        elif user.user_type is None:    
-            raise Http404("El perfil no existe.")
+        else:  # El usuario no está autenticado o no es el propietario del perfil
+            if user.user_type == 1:
+                normal_user = get_object_or_404(Normal, user=user)
+                return render(request, 'tasks/perfiles/normal_profile.html', {'user': normal_user, 'user_type': 'normal'})
+            
+            elif user.user_type == 2:
+                org_user = get_object_or_404(Organizacion, user=user)
+                return render(request, 'tasks/perfiles/organization_profile.html', {'user': org_user, 'user_type': 'organizacion'})
+            
+            elif user.user_type is None:    
+                raise Http404("El perfil no existe.")
 
 
 @login_required
