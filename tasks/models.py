@@ -20,3 +20,4 @@ class Normal(models.Model):
 
 class Organizacion(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+
