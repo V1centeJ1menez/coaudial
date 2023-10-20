@@ -1,27 +1,26 @@
 # Coaudial
-Proyecto Introducción a la Ingeniería
-Web centralizadora de fundaciones beneficas y streaming de información asociada a estas.
+Este es el proyecto de Introducción a la Ingeniería de Coaudial. Se trata de una plataforma web que centraliza fundaciones benéficas y proporciona streaming de información asociada a ellas.
 
-Integrantes:
-- Amaro Alarcon
+## Integrantes
+- Amaro Alarcón
 - Gabriel Covarrubias
 - Marcelo Pérez
 - Vicente Jiménez
 
+## Requisitos
+Para ejecutar Coaudial, necesitarás tener instalado Python 3.11.4, Django 4.1 y Pillow. Puedes instalar estas dependencias utilizando pip:
 
-Uso de entorno virtual (anaconda, virtualenv, ...) o global: 
-python==3.11.4
-Django==4.1
-Pillow
+```pip install -r requirements.txt```
 
-pip install -r requirements.txt
 
-Si no se tiene pip:
-Para instalar pip, seguir los siguientes pasos:
+Si no tienes pip instalado, puedes hacerlo siguiendo estos pasos:
 
-Abre una terminal o línea de comandos.
-Escribe el siguiente comando y presiona Enter:
-python -m ensurepip --default-pip
+1. Abre una terminal o línea de comandos.
+2. Escribe el siguiente comando y presiona Enter:
 
-Esto instalará pip en el sistema del cliente.
+```python -m ensurepip --default-pip```
+
+
+Esto instalará pip en tu sistema.
+
 
