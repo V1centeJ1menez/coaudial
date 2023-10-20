@@ -5,21 +5,31 @@
 {% endblock %}
 
 {% block header %}
-<h1> Perfiles </h1>
+    <h1> Perfiles </h1>
 {% endblock %}
 
+{% block content %}
+    <h1>Pagina Principal</h1>
+    <p>Esta página recibe a los usuarios normales. Los usuarios pueden ver las organizaciones recomendadas</p>
 
-{% block content%}
+    {% if organizations %}
+        <h2>Organizaciones recomendadas:</h2>
+        <ul>
+            {% for organization in organizations %}
+                <li>
+                    <a href="{% url 'profile' organization.username %}">
+                        <button type="button">Ver perfil de {{ organization.first_name}}</button>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-<h1>Pagina Principal</h1>
-<p> Esta página recibe a los usuarios normales. Los usuarios pueden ver las organizaciones recomendadas</p>
-
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

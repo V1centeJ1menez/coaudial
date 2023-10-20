@@ -9,9 +9,12 @@ from django.contrib.auth import update_session_auth_hash
 from django.http import Http404, HttpResponseForbidden
 
 # Create your views here.
-def home(request):
 
-    return render(request, 'tasks/home.html')
+
+def home(request):
+    organizations = CustomUser.objects.filter(user_type=2)
+    return render(request, 'tasks/home.html', {'organizations': organizations})
+
 
 def signup(request):
 
@@ -77,8 +80,6 @@ def index(request):
 
     return render(request, 'tasks/index.html')
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
 
 def profile(request, username, preview=False):
     user = get_object_or_404(CustomUser, username=username)
@@ -91,6 +92,8 @@ def profile(request, username, preview=False):
             return render(request, 'tasks/perfiles/organization_profile.html', {'user': org_user, 'user_type': 'organizacion'})
         else:
             raise Http404("La vista previa no está disponible para este tipo de usuario.")
+        
+        
     else:
 
         if request.user.is_authenticated and (request.user.username == username) and (request.user.is_staff or request.user.is_superuser):
@@ -117,6 +120,7 @@ def profile(request, username, preview=False):
             
             elif user.user_type is None:    
                 raise Http404("El perfil no existe.")
+    
 
 
 @login_required
