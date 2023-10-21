@@ -7,8 +7,23 @@ from .forms import CustomUserCreationForm, ChooseUserTypeForm, EditProfileForm, 
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.http import Http404, HttpResponseForbidden
+from django.contrib.auth import get_user_model
 
 # Create your views here.
+
+def search_user(request):
+    if request.method == 'GET':
+        user_type = 2  # Tipo de usuario "organización"
+        query = request.GET.get('query', '')  # Obtiene la consulta de búsqueda
+
+        # Realiza la búsqueda de usuarios por first_name
+        users = get_user_model().objects.filter(user_type=user_type, first_name__icontains=query)
+
+        if not users:
+            messages.error(request, f"No se encontró ningún usuario con el nombre '{query}'.")
+            return redirect('home')  # Redirige a la página home con un mensaje de error
+
+        return render(request, 'tasks/search_results.html', {'users': users})
 
 
 def home(request):

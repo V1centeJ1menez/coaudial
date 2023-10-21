@@ -12,6 +12,7 @@ urlpatterns = [
     path("cursos/", views.cursos,name="cursos"),
     path('choose_user_type/', views.choose_user_type, name='choose_user_type'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
+    path('search/', views.search_user, name='search_user'),
     path('<str:username>/preview/', views.profile, {'preview': True}, name='profile_preview'),
     path('<str:username>/edit_template/', views.edit_organization_template, name='edit_organization_template'),
     path('<str:username>/', views.profile, name='profile'),

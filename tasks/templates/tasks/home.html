@@ -6,6 +6,13 @@
 
 {% block header %}
     <h1> Perfiles </h1>
+</header>
+<div class="search-bar">
+    <form action="{% url 'search_user' %}" method="get">
+        <input type="text" name="query" placeholder="Buscar organizaciones por nombre">
+        <button type="submit">Buscar</button>
+    </form>
+</div>
 {% endblock %}
 
 {% block content %}
