@@ -19,6 +19,14 @@
             <a href="{% url 'logout_view' %}">
                 <button type="button">Cerrar sesión</button>
             </a>
+
+            {% if request.path != '/cursos/' %}
+            <a href="{% url 'cursos' %}">
+                <button type="button">Cursos</button>
+            </a>
+            {% endif %}
+
+
                 
         {% else %}
 
@@ -33,6 +41,7 @@
                 <button type="button">Registro</button>
             </a>
             {% endif %}
+
         {% endif %}
         
         {% if request.path != '/' %}
@@ -47,11 +56,6 @@
         </a>
         {% endif %}
         
-        {% if request.path != '/cursos/' %}
-        <a href="{% url 'cursos' %}">
-            <button type="button">Cursos</button>
-        </a>
-        {% endif %}
         
         {% if request.path != '/admin/' %}
         <a href="{% url 'admin:index' %}">

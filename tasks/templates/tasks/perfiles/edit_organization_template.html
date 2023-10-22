@@ -6,6 +6,10 @@
 
 {% block header %}
   <h1> Editar Plantilla </h1>
+
+  <a href="{% url 'profile' request.user.username %}">
+    <button type="button">Mi Perfil</button>
+</a>
 {% endblock %}
 
 {% block content %}
