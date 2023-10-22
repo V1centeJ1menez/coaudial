@@ -7,17 +7,22 @@
 }
 
 body {
-    background: linear-gradient(
-        90deg,
-        rgba(166,93,234,1) 25%,
-        rgba(207,103,235,1) 73%);
-    
+    background-color: white;
     font-family: Arial, Helvetica, sans-serif
+    
 }
 
 .logo img{
-    height: 70px;
+    height: 60px;
     width: auto;
+    margin-right: 50px;
+    
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .container {
@@ -27,8 +32,8 @@ body {
 }
 
 .back {
-    padding: 32px 0;
-    background-color: #2A394F;
+    padding: 40px 0px 40px ;
+    background-color: #E8E6FA;
 }
 
 .menu {
@@ -43,37 +48,46 @@ body {
 }
 
 .encabezado-img{
-    background-image: url(../tasks/img/fondo.jpg);
-    height: 500px;
+    background-image: url(../tasks/img/fondo-01.jpg);
+    padding: 250px 300px 400px 50px;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #fff;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.encabezado-img p{
+
+
+.encabezado-img p{  
     font-size: 20px 20px;
+    color: #2A394F;
+    margin-top: 1000;
 }
 .encabezado-img h1{
     font-size: 50px 20px;
+    color: #2A394F;
 }
 
 .menu .navbar ul li {
     position: relative;
     float: left;
+    margin-top: 10px;
 }
 
 .menu .navbar ul li a {
     font-size: 18px;
     padding: 20px;
-    color: #ffffff;
+    color: #2A394F;
     display: block;
 }
 
 .menu .navbar ul li a:hover {
-    color: aqua;
+    color: blue;
 }
 
 #menu {
@@ -108,7 +122,7 @@ body {
         top: 100%;
         left: 0;
         right: 0;
-        background-color: #2A394F;
+        background-color: #E8E6FA;
         display: none;
     }
 

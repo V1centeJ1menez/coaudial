@@ -10,20 +10,22 @@
     <header>
         <div class="back">
             <div class="menu container">
+                
+                
                 <div class="logo">
                     <img src="../../static/tasks/img/coaudial_icon.png" alt="Logo de Coaudial">
+                    <h1>Coaudial</h1>
                 </div>
+                
                 <input type="checkbox" id="menu" />
                 <label for="menu">
                     <img src="../../static/tasks/img/menu.png" class="menu-icono" alt="">
                 </label>
                 <nav class="navbar">
-                  <a href="{% url 'login' %}">
-                    <button type="button">Ingresa</button>
-                  </a>
-                  <a href="{% url 'signup' %}">
-                    <button type="button">Registro</button>
-                  </a>
+                    <ul>
+                        <li><a href="../tasks/login.html">iniciar sesion</a></li>
+                        <li><a href="../tasks/signup.html">Registrarse</a></li>
+                    </ul>
             
                 </nav>
             </div>
@@ -31,12 +33,12 @@
     </header>
     
     <div class="encabezado-img">
+        
         <h1>Con tu ayuda sobrellevamos la discapacidad</h1>
         <p>Transformando desafíos en oportunidades, construyendo un 
           mundo más inclusivo para todos.</p>
-    
       </div>
 
-
+    
 </body>
 </html>
