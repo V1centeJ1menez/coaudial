@@ -1,7 +1,7 @@
 {% extends "../bases/profile_base.html" %}
 
 {% block title %}
-  Mi Perfil - {{ user.user.username}}
+  Mi Perfil - {{ user.user.first_name}}
 {% endblock %}
 
 {% block header %}
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-  <h1>{{ user.user.username }}</h1>
+  <h1>{{ user.user.first_name }}</h1>
 
   <p> Este es mi perfil de organización </p>
 

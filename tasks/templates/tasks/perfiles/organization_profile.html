@@ -1,13 +1,13 @@
 {% extends "../bases/profile_base.html" %}
 
 {% block title %}
-  Perfil - {{ user.user.username }}
+  Perfil - {{ user.title}}
 {% endblock %}
 
 {% block header %}
   <!-- Nombre de usuario -->
-  <h1> Perfil de {{ user.user.username }} </h1>
-  {% if user.is_authenticated %}
+  <h1> Perfil </h1>
+  {% if request.user.is_authenticated %}
   <a href="{% url 'profile' user.user.username %}">
 
     <button type="button">Mi Perfil</button> 
