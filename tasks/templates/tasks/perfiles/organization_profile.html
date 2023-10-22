@@ -1,0 +1,55 @@
+{% extends "../bases/profile_base.html" %}
+
+{% block title %}
+  Perfil - {{ user.title}}
+{% endblock %}
+
+{% block header %}
+  <!-- Nombre de usuario -->
+  <h1> Perfil </h1>
+  {% if request.user.is_authenticated %}
+  <a href="{% url 'profile' user.user.username %}">
+
+    <button type="button">Mi Perfil</button> 
+  </a>
+  {% endif %}
+  
+{% endblock %}
+
+{% block content %}
+  <!-- Banner -->
+  {% if user.banner %}
+    <div>
+      <img src="{{ user.banner.url }}" alt="Banner">
+    </div>
+  {% endif %}
+
+  <!-- Título y subtítulo -->
+  <h1>{{ user.title }}</h1>
+  <h2>{{ user.subtitle }}</h2>
+
+  <!-- Imagen de la fundación -->
+  {% if user.foundation_image %}
+    <div>
+      <img src="{{ user.foundation_image.url }}" alt="Imagen de la fundación">
+    </div>
+  {% endif %}
+
+  <!-- Acerca de la organización -->
+  <p>{{ user.about }}</p>
+
+  <!-- Información adicional -->
+  <p>{{ user.additional_info }}</p>
+
+  <!-- Botón de redirección -->
+  {% if user.redirect_url %}
+    <a href="{{ user.redirect_url }}">
+      <button type="button">Visita nuestra página web</button>
+    </a>
+  {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+   {{ user.footer }}
+{% endblock %}

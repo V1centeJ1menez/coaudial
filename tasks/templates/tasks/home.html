@@ -1,14 +1,42 @@
-{% extends "tasks/base_home.html" %}
+{% extends "tasks/bases/header_base.html" %}
 
 {% block title %}
     Principal
 {% endblock %}
 
+{% block header %}
+    <h1> Perfiles </h1>
+</header>
+<div class="search-bar">
+    <form action="{% url 'search_user' %}" method="get">
+        <input type="text" name="query" placeholder="Buscar organizaciones por nombre">
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+{% endblock %}
 
-{% block content%}
+{% block content %}
+    <h1>Pagina Principal</h1>
+    <p>Esta página recibe a los usuarios normales. Los usuarios pueden ver las organizaciones recomendadas</p>
 
-<h1>Pagina Principal</h1>
-<p> Esta página recibe a los usuarios normales. Los usuarios pueden ver las organizaciones recomendadas</p>
+    {% if organizations %}
+        <h2>Organizaciones recomendadas:</h2>
+        <ul>
+            {% for organization in organizations %}
+                <li>
+                    <a href="{% url 'profile' organization.username %}">
+                        <button type="button">Ver perfil de {{ organization.first_name}}</button>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

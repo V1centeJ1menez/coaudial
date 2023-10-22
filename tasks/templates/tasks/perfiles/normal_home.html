@@ -1,0 +1,27 @@
+{% extends "../bases/profile_base.html" %}
+
+{% block title %}
+  Mi Perfil - {{ user.user.first_name }}
+{% endblock %}
+
+{% block header %}
+  <h1> Mi Perfil </h1>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ user.user.first_name}}</h1>
+
+  {% if user.user.user_type == 1 %}
+    <p> Este es mi perfil de usuario normal </p>
+  {% elif user.user.user_type == 2 %}
+    <p> Este es mi perfil de organización </p>
+  {% else %}
+    <p> No has especificado que tipo de usuario eres </p>
+  {% endif %}
+
+  <!-- Opciones de edición -->
+  <a href="{% url 'edit_profile' %}">
+    <button type="button">Editar Perfil</button>
+  </a>
+
+{% endblock %}

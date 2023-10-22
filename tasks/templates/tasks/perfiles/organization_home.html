@@ -1,0 +1,31 @@
+{% extends "../bases/profile_base.html" %}
+
+{% block title %}
+  Mi Perfil - {{ user.user.first_name}}
+{% endblock %}
+
+{% block header %}
+  <h1> Mi Perfil </h1>
+  
+{% endblock %}
+
+{% block content %}
+  <h1>{{ user.user.first_name }}</h1>
+
+  <p> Este es mi perfil de organización </p>
+
+  <!-- Opciones de edición -->
+  <a href="{% url 'edit_profile' %}">
+    <button type="button">Editar Perfil</button>
+  </a>
+
+  <!-- Opción para editar la plantilla -->
+  <a href="{% url 'edit_organization_template' user.user.username %}">
+    <button type="button">Modificar Plantilla</button>
+  </a>
+
+  <a href="{% url 'profile_preview' user.user.username %}">
+    <button type="button">Vista previa del perfil público</button>
+  </a>
+
+{% endblock %}

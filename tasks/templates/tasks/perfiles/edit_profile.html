@@ -1,0 +1,28 @@
+{% extends "../bases/profile_base.html" %}
+
+{% block title %}
+  Editar Perfil - {{ user.username }}
+{% endblock %}
+
+{% block header %}
+  <h1> Editar Perfil </h1>
+  <a href="{% url 'profile' request.user.username %}">
+    <button type="button">Mi Perfil</button>
+  </a>
+
+{% endblock %}
+
+{% block content %}
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="submit-profile">Guardar Cambios</button>
+  </form>
+  
+  <h2>Cambiar Contraseña</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ password_form.as_p }}
+    <button type="submit" name="submit-password">Cambiar Contraseña</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "../bases/profile_base.html" %}
+
+{% block title %}
+  Perfil - {{ user.user.username }}
+{% endblock %}
+
+{% block header %}
+  <h1> Perfil </h1>
+  <a href="{% url 'profile' request.user.username %}">
+    <button type="button">Mi Perfil</button>
+  </a>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ user.user.username }}</h1>
+
+  <p> Este es el perfil del usuario normal {{ user.user.username }}</p>
+
+{% endblock %}
