@@ -1,9 +1,5 @@
 {% extends "tasks/bases/header_base.html" %}
 
-{% block title %}
-    Coaudial - Ingresa
-{% endblock %}
-
 {% block header%}
 
 <img src="../../static/tasks/img/coaudial_icon.ico" alt="Icono de coaudial">
@@ -13,20 +9,24 @@
 
 {% block content%}
 
-<h1>Ingreso</h1>
-<p> Esta página recibe al cliente para que inicie sesión</p>
+<div class="container">
 
-<br>
+    <h1>Ingreso</h1>
 
-<form method="post"> {% csrf_token %}
+    <br>
 
-    <label for="username">Nombre de usuario:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Contraseña:</label><br>
-    <input type="password" id="password" name="password"><br>
-    <input type="submit" value="Iniciar sesión">
-    
-</form>
-</a>
+    <form method="post"> {% csrf_token %}
+
+        <label for="username">Nombre de usuario:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Contraseña:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <input type="submit" class="iniciar-boton" value="Iniciar sesión">
+        
+    </form>
+    </a>
+    <link rel="stylesheet" href="../../static/frontend/login.css">
+
+</div>
 
 {% endblock %}

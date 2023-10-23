@@ -2,47 +2,31 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-}
-
-body{
-    font-family: 'Times New Roman', Times, serif;
-}
-header{
-    background-color: blue;
-    text-align: right;
-    padding: 25px 0;
-}
-
-nav a{
-    display: inline-block;
     text-decoration: none;
-    color: #696969;
-    margin: 0 30px;
-    padding: 5px 15px;
-    border-radius: 30px;
-}
-
-nav a:hover{
-    background-color: black;
-    color: #fff;
+    list-style: none;
 }
 
 .encabezado-img{
-    background-image: url(../tasks/img/fondo.jpg);
-    height: 500px;
+    background-image: url(../../static/tasks/img/fondo-01.jpg);
+    padding: 250px 300px 400px 50px;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #fff;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: auto;
 }
 
-.encabezado-img p{
+.encabezado-img p{  
     font-size: 20px 20px;
+    color: #2A394F;
+    margin-top: 10px;
 }
 .encabezado-img h1{
     font-size: 50px 20px;
+    color: #2A394F;
 }
-
