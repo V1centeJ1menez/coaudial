@@ -23,11 +23,13 @@
         <h2>Organizaciones recomendadas:</h2>
         <ul>
             {% for organization in organizations %}
-                <li>
                     <a href="{% url 'profile' organization.username %}">
+                        <br>
                         <button type="button">Ver perfil de {{ organization.first_name}}</button>
+                        <br>
+                        <img src="{{organization.organizacion.banner.url}}">
+                        <br>
                     </a>
-                </li>
             {% endfor %}
         </ul>
     {% endif %}
