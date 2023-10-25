@@ -8,7 +8,7 @@
     
 </head>
 <body>
-    <header>
+    <header class="buttons">
         <!-- Aquí puedes poner tu barra de navegación, logo, etc. -->
         {% block header %}
         <!-- Contenido del encabezado por defecto -->
@@ -17,41 +17,41 @@
         {% if request.user.is_authenticated %}
 
             <a href="{% url 'logout_view' %}">
-                <button type="button">Cerrar sesión</button>
+                <button type="button" class="Close_sesion_button">Cerrar sesión</button>
             </a>
 
             <a href="{% url 'profile' request.user.username %}">
-                <button type="button">Mi Perfil</button>
+                <button type="button" class="Profile_button">Mi Perfil</button>
             </a>
 
             {% if request.path != '/cursos/' %}
             <a href="{% url 'cursos' %}">
-                <button type="button">Cursos</button>
+                <button type="button" class="Courses_button">Cursos</button>
             </a>
             {% endif %}
             
         {% else %}
             {% if request.path != '/login/' %}
             <a href="{% url 'login' %}">
-                <button type="button">Iniciar sesión</button>
+                <button type="button" class="Login_button">Iniciar sesión</button>
             </a>
             {% endif %}
             {% if request.path != '/signup/' %}
             <a href="{% url 'signup' %}">
-                <button type="button">Registro</button>
+                <button type="button" class="Signup_button">Registro</button>
             </a>
             {% endif %}
         {% endif %}
         
         {% if request.path != '/' %}
         <a href="{% url 'index' %}">
-            <button type="button">Index</button>
+            <button type="button" class="Index_button">Index</button>
         </a>
         {% endif %}
         
         {% if request.path != '/home/' %}
         <a href="{% url 'home' %}">
-            <button type="button">Home</button>
+            <button type="button" class="Home_button">Home</button>
         </a>
         {% endif %}
         
