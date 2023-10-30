@@ -19,7 +19,16 @@
 </header>
 
 <div class="Line"></div>
+{% endblock %}
 
+
+
+
+
+
+
+{% block content %}
+<!-- aqui es donde iran los perfiles recomendados-->
 <div class="Search_bar">
     <div class="Search_design">
         <svg class="Search_icon" xmlns="http://www.w3.org/2000/svg" width="20" height="27" viewBox="0 0 28 27" fill="none">
@@ -31,16 +40,6 @@
     </form>
     </div>
 </div>
-{% endblock %}
-
-
-
-
-
-
-
-{% block content %}
-<!-- aqui es donde iran los perfiles recomendados-->
 
     {% if organizations %}
         <ul>
@@ -50,9 +49,11 @@
                 <a href="{% url 'profile' organization.username %}" class="container">
                     <br>
                     <h2 class="Profile">{{ organization.first_name}}</h2>
+                    {% if organization.organizacion.banner%}
                     <br>
                     <img src="{{organization.organizacion.banner.url}}" class="ong_banner">
                     <br>
+                    {% endif%}
                 </a>
             {% endfor %}
             </section>
