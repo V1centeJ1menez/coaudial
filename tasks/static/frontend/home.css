@@ -6,37 +6,23 @@
    
 }
 
-body {
-   background: rgba(107, 110, 168, 0.72);
-}
-
-
 header {
     position: relative;
-    justify-content: space-between;
-    display: flex;
-    padding: top 20%; 
-}
-
-.buttons {
-    text-decoration: none;
-    position: relative;
-    right: 2%;
-    height: auto;
-    padding-top: 20px;
+    padding-bottom: 1%;
+    padding-left: 1%;
 }
 
 .Page_titles {
-    font-size: 35;
-    position: relative;
-    left: 20%;
     color: #FFF;
+    font-size: 45px;
+}
+
+body {
+   background: rgba(107, 110, 168, 0.72);
+   text-decoration: none;
 }
 
 /*Menus*/
-
-
-
 
 .Line {
     width: auto;
@@ -49,44 +35,31 @@ header {
 }
 
 /*barra de busqueda*/
-.Search_bar {
-    position: relative;
-    top: 70px;
-    left: 10%;
+.container_bar {
+    padding-top: 1.5%;
+    display: flex;
+    justify-content: center ;
+    
+}
+
+
+.Bar_design {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: rgba(4, 6, 47, 0.68);
-    width: 260px;
-    height: 40px;
+    width: 200px;
     border-radius: 31.056px;
 
 }
 
-.Search_design {
-    position: absolute;
-    display: flex;
-    top: 28%;
-    left: 5%;
-    
-}
-
-.Search_icon {
-    position: relative;
-    bottom: 4px;
-
-}
-.Search_bar_design {
+.search_bar {
+    background-color: transparent;
     border: none;
-    background: transparent;
     color: #FFF;
-    width: 220px;
-    border-radius: 20px;
-    font-size: 14;
-    position: absolute;
-    margin-left:  5px;
-    height: 39px;
-    bottom: 1%;
-    text-align: center;
+    margin: 1%;
+    margin-left: 1%;
 }
-
 /* perfiles*/
 
 
@@ -96,7 +69,7 @@ header {
    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 7%;
+    margin-top: 2%;
 }
 
 .container {

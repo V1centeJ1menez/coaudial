@@ -2,35 +2,12 @@
 
 
 {% block title %}
-    Principal   
+    Principal 
 {% endblock %}
 
 {% block header %}
-<link rel="stylesheet" href="/static/home.css">
-<header>
+<link rel="stylesheet" href="/static/frontend/home.css">  
     <h1 class="Page_titles">Organizaciones recomendadas</h1>
-    <section class="Menu">
-        <div class="Home">
-            
-                
-            </a>
-        </div>
-    </section>
-</header>
-
-<div class="Line"></div>
-
-<div class="Search_bar">
-    <div class="Search_design">
-        <svg class="Search_icon" xmlns="http://www.w3.org/2000/svg" width="20" height="27" viewBox="0 0 28 27" fill="none">
-        <path d="M13.045 24.1392C6.70893 24.1392 1.55035 19.0773 1.55035 12.8599C1.55035 6.6426 6.70893 1.58069 13.045 1.58069C19.3811 1.58069 24.5396 6.6426 24.5396 12.8599C24.5396 19.0773 19.3811 24.1392 13.045 24.1392ZM13.045 3.23131C7.6285 3.23131 3.2325 7.55594 3.2325 12.8599C3.2325 18.1639 7.6285 22.4886 13.045 22.4886C18.4615 22.4886 22.8575 18.1639 22.8575 12.8599C22.8575 7.55594 18.4615 3.23131 13.045 3.23131Z" fill="white"/>
-        <path d="M24.82 25.2396C24.6069 25.2396 24.3938 25.1626 24.2256 24.9975L21.9828 22.7967C21.6576 22.4776 21.6576 21.9494 21.9828 21.6303C22.308 21.3112 22.8463 21.3112 23.1715 21.6303L25.4143 23.8311C25.7396 24.1502 25.7396 24.6784 25.4143 24.9975C25.2461 25.1626 25.0331 25.2396 24.82 25.2396Z" fill="white"/>
-      </svg>
-      <form action="{% url 'search_user' %}" method="get">
-        <input class="search_bar_design" type="text" name="query" placeholder="Buscar...">
-    </form>
-    </div>
-</div>
 {% endblock %}
 
 
@@ -41,6 +18,18 @@
 
 {% block content %}
 <!-- aqui es donde iran los perfiles recomendados-->
+<div class="Line"></div>
+<div class="container_bar"><div class="Bar_design">
+        <svg class="Search_icon" xmlns="http://www.w3.org/2000/svg" width="20" height="27" viewBox="0 0 28 27" fill="none">
+        <path d="M13.045 24.1392C6.70893 24.1392 1.55035 19.0773 1.55035 12.8599C1.55035 6.6426 6.70893 1.58069 13.045 1.58069C19.3811 1.58069 24.5396 6.6426 24.5396 12.8599C24.5396 19.0773 19.3811 24.1392 13.045 24.1392ZM13.045 3.23131C7.6285 3.23131 3.2325 7.55594 3.2325 12.8599C3.2325 18.1639 7.6285 22.4886 13.045 22.4886C18.4615 22.4886 22.8575 18.1639 22.8575 12.8599C22.8575 7.55594 18.4615 3.23131 13.045 3.23131Z" fill="white"/>
+        <path d="M24.82 25.2396C24.6069 25.2396 24.3938 25.1626 24.2256 24.9975L21.9828 22.7967C21.6576 22.4776 21.6576 21.9494 21.9828 21.6303C22.308 21.3112 22.8463 21.3112 23.1715 21.6303L25.4143 23.8311C25.7396 24.1502 25.7396 24.6784 25.4143 24.9975C25.2461 25.1626 25.0331 25.2396 24.82 25.2396Z" fill="white"/>
+      </svg>
+      <form action="{% url 'search_user' %}" method="get">
+        <input class="search_bar" type="text" name="query" placeholder="Buscar...">
+    </form>
+</div>
+</div>
+
 
     {% if organizations %}
         <ul>
@@ -50,9 +39,11 @@
                 <a href="{% url 'profile' organization.username %}" class="container">
                     <br>
                     <h2 class="Profile">{{ organization.first_name}}</h2>
+                    {% if organization.organizacion.banner%}
                     <br>
                     <img src="{{organization.organizacion.banner.url}}" class="ong_banner">
                     <br>
+                    {% endif%}
                 </a>
             {% endfor %}
             </section>

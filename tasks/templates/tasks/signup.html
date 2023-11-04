@@ -1,32 +1,25 @@
 {% extends "tasks/bases/header_base.html" %}
 
-{% block title %}
-  Coaudial - Registro
-{% endblock %}
-
-{% block header%}
-
-<img src="../../static/tasks/img/coaudial_icon.ico" alt="Icono de coaudial">
-<h1> Coaudial</h1>
-
-{% endblock %}
-
-
 {% block content%}
-
-<h2>Registro</h2>
-{% if form.errors %}
-
-<p style="color: red;"> Por favor revisa este campo</p>
-
-{% endif %}
-
-<form action="{% url 'signup' %}" method="POST"> {% csrf_token %}
-
-  {{ register_form.as_p }}
+<div class="container">
   
-  <input type="submit" value="Registrarse">
+  <h2>Registro</h2>
+  {% if form.errors %}
 
-</form>
+  <p style="color: red;"> Por favor revisa este campo</p>
 
+  {% endif %}
+
+  <form action="{% url 'signup' %}" method="POST">{% csrf_token %}
+
+    {{ register_form.as_p }}
+    
+    <input type="submit" class="registro-boton" value="Registrarse">
+
+  </form>
+
+  <link rel="stylesheet" href="../../static/frontend/registro.css">
+
+</div>
 {% endblock %}
+

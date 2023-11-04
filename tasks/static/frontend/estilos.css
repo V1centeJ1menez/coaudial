@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+.encabezado-img{
+    background-image: url(../../static/tasks/img/fondo-01.jpg);
+    padding: 250px 300px 400px 50px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: auto;
+}
+
+.encabezado-img p{  
+    font-size: 20px 20px;
+    color: #2A394F;
+    margin-top: 10px;
+}
+.encabezado-img h1{
+    font-size: 50px 20px;
+    color: #2A394F;
+}
