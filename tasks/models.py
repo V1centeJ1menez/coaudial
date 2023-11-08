@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth import get_user_model
 from django.db import models
+from django.conf import settings
 
 class CustomUser(AbstractUser):
 
@@ -37,4 +39,13 @@ class Organizacion(models.Model):
         self.groups.clear()
         super().delete(*args, **kwargs)
 
+class Curso(models.Model):
+    user_name = models.CharField(max_length=150, null=True)  # Campo para guardar el nombre de usuario
+    titulo = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    url_playlist = models.URLField()
+    banner = models.ImageField(upload_to='coursesImg/', null=True, blank=True)
+    # Otros campos según tus necesidades
 
+    def __str__(self):
+        return self.titulo

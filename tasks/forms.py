@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from .models import CustomUser, Organizacion
+from .models import CustomUser, Organizacion, Curso
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -54,3 +54,9 @@ class EditOrganizationTemplateForm(forms.ModelForm):
     class Meta:
         model = Organizacion
         fields = ['banner', 'title', 'subtitle', 'foundation_image', 'about', 'additional_info', 'redirect_url', 'footer']
+
+class CursoForm(forms.ModelForm):
+    class Meta:
+        model = Curso
+        fields = ['titulo', 'descripcion', 'url_playlist', 'banner']
+

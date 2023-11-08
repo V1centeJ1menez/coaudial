@@ -1,0 +1,18 @@
+{% extends "tasks/bases/header_base.html" %}
+
+{% block content %}
+  <h2>Todos los Cursos</h2>
+
+  <ul>
+    {% for curso in cursos %}
+      <li>
+        <h3>{{ curso.titulo }}</h3>
+        <p>Creado por: {{ curso.user_name}}</p>  {# Muestra el nombre del usuario creador #}
+        <!-- Mostrar la imagen del banner del curso -->
+        <img src="{{ curso.banner.url }}" alt="{{ curso.titulo }}">
+        <!-- Agregar un enlace para reproducir el curso -->
+        <a href="{% url 'reproducir_curso' curso.id %}">Reproducir Curso</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

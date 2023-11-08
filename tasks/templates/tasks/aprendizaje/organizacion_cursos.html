@@ -1,0 +1,19 @@
+{% extends "tasks/bases/header_base.html" %}
+
+{% block header %}
+    <link rel="stylesheet" href="/static/frontend/home.css">  
+    <h1 class="Page_titles">Mis Cursos</h1>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'todos_los_cursos' %}" method="get">
+        <button type="submit" class="btn btn-primary">Ver Todos los Cursos</button>
+    </form>
+
+    <form method="post" action="{% url 'crear_curso' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Crear Curso</button>
+    </form>
+
+{% endblock %}

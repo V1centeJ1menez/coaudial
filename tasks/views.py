@@ -2,12 +2,15 @@ from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Normal, Organizacion, CustomUser
-from .forms import CustomUserCreationForm, ChooseUserTypeForm, EditProfileForm, CustomPasswordChangeForm, EditOrganizationTemplateForm
+from .models import Normal, Organizacion, CustomUser, Curso
+from .forms import CustomUserCreationForm, ChooseUserTypeForm, EditProfileForm, CustomPasswordChangeForm, EditOrganizationTemplateForm, CursoForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.http import Http404, HttpResponseForbidden
 from django.contrib.auth import get_user_model
+import re
+from googleapiclient.discovery import build
+
 
 # Create your views here.
 
@@ -191,5 +194,84 @@ def edit_organization_template(request, username):
 
 @login_required
 def cursos(request):
-    # Aqui necesito ponerle mas cosas, ya que se divide en mas secciones este apartado
-    return render(request, 'tasks/aprendizaje/cursos.html')
+    user = request.user  # Obtener el usuario actual
+    if user.user_type == 1:
+        # Usuario de tipo 1 (normal)
+        return render(request, 'tasks/aprendizaje/normal_cursos.html')
+    elif user.user_type == 2:
+        # Usuario de tipo 2 (organización)
+        return render(request, 'tasks/aprendizaje/organizacion_cursos.html')
+
+@login_required
+def crear_curso(request):
+    if request.method == 'POST':
+        form = CursoForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            curso = form.save(commit=False)
+            curso.user_name = request.user.first_name # Asigna el nombre de usuario al campo "user_name"
+            curso.save()
+
+            return redirect('cursos')
+
+    else:
+        form = CursoForm()
+
+    return render(request, 'tasks/aprendizaje/crear_curso.html', {'form': form})
+
+
+@login_required
+def obtener_id_playlist(url):
+    # Expresión regular para extraer el identificador de la playlist de una URL de YouTube
+    pattern = r"^(https?://)?(www\.youtube\.com|youtu\.?be)/playlist\?list=([a-zA-Z0-9_-]+)"
+    match = re.match(pattern, url)
+    if match:
+        return match.group(3)
+    return None
+
+
+@login_required
+def obtener_informacion_playlist(id_playlist):
+    # Configura la API de YouTube
+    api_key = 'TU_API_KEY_DE_YOUTUBE'
+    youtube = build('youtube', 'v3', developerKey=api_key)
+
+    # Realiza una solicitud para obtener información sobre la playlist
+    playlist_info = youtube.playlists().list(
+        part='snippet',
+        id=id_playlist
+    ).execute()
+
+    return playlist_info
+
+
+@login_required
+def todos_los_cursos(request):
+    cursos = Curso.objects.all()
+    return render(request, 'tasks/aprendizaje/todos_los_cursos.html', {'cursos': cursos})
+
+
+@login_required
+def reproducir_curso(request, curso_id):
+    curso = Curso.objects.get(id=curso_id)
+    return render(request, 'tasks/aprendizaje/reproducir_curso.html', {'curso': curso})
+
+@login_required
+def cursos_creados(request):
+    cursos_creados = Curso.objects.filter(user=request.user)  # Filtra los cursos del usuario actual
+    return render(request, 'cursos_creados.html', {'cursos_creados': cursos_creados})
+
+@login_required
+def crear_curso(request):
+    if request.method == 'POST':
+        form = CursoForm(request.POST, request.FILES)
+        if form.is_valid():
+            curso = form.save(commit=False)
+            curso.user = request.user
+            curso.save()
+            return redirect('cursos_creados')
+    else:
+        form = CursoForm()
+    return render(request, 'tasks/aprendizaje/crear_curso.html', {'form': form})
+
+
