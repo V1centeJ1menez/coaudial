@@ -244,34 +244,27 @@ def obtener_informacion_playlist(id_playlist):
 
     return playlist_info
 
-
-@login_required
-def todos_los_cursos(request):
-    cursos = Curso.objects.all()
-    return render(request, 'tasks/aprendizaje/todos_los_cursos.html', {'cursos': cursos})
-
-
 @login_required
 def reproducir_curso(request, curso_id):
     curso = Curso.objects.get(id=curso_id)
     return render(request, 'tasks/aprendizaje/reproducir_curso.html', {'curso': curso})
 
-@login_required
-def cursos_creados(request):
-    cursos_creados = Curso.objects.filter(user=request.user)  # Filtra los cursos del usuario actual
-    return render(request, 'cursos_creados.html', {'cursos_creados': cursos_creados})
-
+# Vista para crear un nuevo curso
 @login_required
 def crear_curso(request):
     if request.method == 'POST':
         form = CursoForm(request.POST, request.FILES)
         if form.is_valid():
-            curso = form.save(commit=False)
-            curso.user = request.user
-            curso.save()
-            return redirect('cursos_creados')
+            # Guarda el nombre de usuario en el formulario
+            form.instance.user_name = request.user.first_name
+            form.save()
+            return redirect('todos_los_cursos')
     else:
         form = CursoForm()
     return render(request, 'tasks/aprendizaje/crear_curso.html', {'form': form})
 
-
+# Vista para ver todos los cursos
+@login_required
+def todos_los_cursos(request):
+    cursos = Curso.objects.all()
+    return render(request, 'tasks/aprendizaje/todos_los_cursos.html', {'cursos': cursos})
