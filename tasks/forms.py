@@ -53,7 +53,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
 class EditOrganizationTemplateForm(forms.ModelForm):
     class Meta:
         model = Organizacion
-        fields = ['banner', 'title', 'subtitle', 'foundation_image', 'about', 'additional_info', 'redirect_url', 'footer']
+        fields = ['banner', 'title', 'subtitle', 'foundation_image', 'about', 'redirect_url', 'footer']
 
 class CursoForm(forms.ModelForm):
     class Meta:
