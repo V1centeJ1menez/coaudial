@@ -5,14 +5,18 @@
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="/static/frontend/search.css">
     <h1>Resultados de la búsqueda</h1>
 
     {% if users %}
-        <ul>
+        <ul class="uls">
             {% for user in users %}
-                <li>
-                    <a href="{% url 'profile' user.username %}">
+                <li class="lis">
+                    <a href="{% url 'profile' user.username %}" class="link">
                         {{ user.first_name }}
+                        {% if organization.organizacion.banner%}
+                        <img src="{{organization.organizacion.banner.url}}" class="ong_banner">
+                        {% endif%}
                     </a>
                 </li>
             {% endfor %}

@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+ }
+ 
+ header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding-right: 5%;
+     padding-top: 1%;
+     font-weight: bold;
+     position: relative;
+ }
+
+.buttons li{
+    display: inline-block;
+    padding: 10px 20px;
+    position: relative;
+  
+}
+
+.buttons li a{
+    color: #FFF;
+    text-decoration: none;
+    position: relative;
+    top: 50%;
+
+
+}
+
+.buttons a:hover{
+    color: aqua;
+}
+
+
+.buttons {
+    background: linear-gradient(180deg, #121556 99.99%, rgba(255, 255, 255, 0.00) 100%);
+    text-align: center;
+    border-radius: 6%;
+}

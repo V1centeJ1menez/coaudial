@@ -5,25 +5,25 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="icon" href="{% static 'tasks/img/coaudial_icon.ico' %}">
+    <link rel="stylesheet" href="/static/frontend/profile_base.css">
 </head>
 <body>
     <header>
-
         <!-- Aquí puedes poner tu barra de navegación, logo, etc. -->
         {% block header %}
         <!-- Contenido del encabezado por defecto -->
         {% endblock %}
-        
+        <ul class="buttons">
         {% if request.user.is_authenticated %}
 
-            <a href="{% url 'logout_view' %}">
-                <button type="button">Cerrar sesión</button>
-            </a>
+            <li><a href="{% url 'logout_view' %}">
+               Cerrar sesión
+            </a></li>
 
             {% if request.path != '/cursos/' %}
-            <a href="{% url 'cursos' %}">
-                <button type="button">Cursos</button>
-            </a>
+            <li><a href="{% url 'cursos' %}">
+                Cursos
+            </a></li>
             {% endif %}
 
 
@@ -31,36 +31,36 @@
         {% else %}
 
             {% if request.path != '/login/' %}
-            <a href="{% url 'login' %}">
-                <button type="button">Iniciar sesión</button>
-            </a>
+            <li><a href="{% url 'login' %}">
+               Iniciar sesión
+            </a></li>
             {% endif %}
 
             {% if request.path != '/signup/' %}
-            <a href="{% url 'signup' %}">
-                <button type="button">Registro</button>
-            </a>
+            <li><a href="{% url 'signup' %}">
+                Registro
+            </a></li>
             {% endif %}
 
         {% endif %}
         
         {% if request.path != '/' %}
-        <a href="{% url 'index' %}">
-            <button type="button">Index</button>
-        </a>
+        <li><a href="{% url 'index' %}">
+           Index
+        </a></li>
         {% endif %}
         
         {% if request.path != '/home/' %}
-        <a href="{% url 'home' %}">
-            <button type="button">Home</button>
-        </a>
+        <li><a href="{% url 'home' %}">
+            Home
+        </a></li>
         {% endif %}
         
         
         {% if request.path != '/admin/' %}
-        <a href="{% url 'admin:index' %}">
-            <button type="button">AdminPage</button>
-        </a>
+        <li><a href="{% url 'admin:index' %}">
+            AdminPage
+        </a></li>
         {% endif %}
 </header>
     
