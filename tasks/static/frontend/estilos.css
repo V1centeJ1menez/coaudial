@@ -1,32 +1,46 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-}
-
-.encabezado-img{
-    background-image: url(../../static/tasks/img/fondo-01.jpg);
-    padding: 250px 300px 400px 50px;
-    background-size: cover;
+header{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    height: 70px;
+    background-color: #E8E6FA;
+    justify-content: space-between;
     align-items: center;
-    color: #fff;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: auto;
+    padding: 10px;
 }
 
-.encabezado-img p{  
-    font-size: 20px 20px;
-    color: #2A394F;
-    margin-top: 10px;
+.logo{
+    display: flex;
+    align-items: center;
 }
-.encabezado-img h1{
-    font-size: 50px 20px;
-    color: #2A394F;
+
+.logo img{
+    height: 50px;
+    margin-right: 10px;
+    margin-left: 100px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    position: relative;
+    float: left;
+    
+}
+
+nav a{
+    font-weight: 600;
+    padding-right: 50px;
+}
+
+nav a:hover{
+    color: white;
+}
+
+@media (max-width:700px){
+    header{
+        flex-direction: column;
+    }
+
+    nav{
+        padding: 10px 0px;
+    }
 }

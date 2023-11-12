@@ -1,15 +1,19 @@
 {% extends "tasks/bases/header_base.html" %}
 
+
+
 {% block header%}
 
-<img src="../../static/tasks/img/coaudial_icon.ico" alt="Icono de coaudial">
-<h1> Coaudial</h1>
+<div class="logo">
+    <img src="../../static/tasks/img/coaudial_icon.png" alt="logo de coaudial">
+    <h2 class="nombre">Coaudial</h2>
+  </div>
 
 {% endblock %}
 
 {% block content%}
 
-<div class="container">
+<div class="form-container">
 
     <h1>Ingreso</h1>
 
@@ -24,9 +28,8 @@
         <input type="submit" class="iniciar-boton" value="Iniciar sesión">
         
     </form>
-    </a>
-    <link rel="stylesheet" href="../../static/frontend/login.css">
 
 </div>
 
+<link rel="stylesheet" href="../../static/frontend/login.css">
 {% endblock %}
