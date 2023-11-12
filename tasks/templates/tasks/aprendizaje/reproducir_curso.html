@@ -1,0 +1,50 @@
+{% extends "tasks/bases/header_base.html" %}
+
+{% block content %}
+  <div class="course-content">
+    <div class="course-details">
+      <h2>{{ curso.titulo }} - {{ curso.user_name }}</h2>
+    </div>
+    <div class="video-player">
+      <div id="youtube-player"></div>
+    </div>
+    <p>{{ curso.descripcion }}</p>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    var player;
+    var playlistId = '{{ curso.url_playlist }}';
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtube-player', {
+        height: '315',
+        width: '560',
+        videoId: '',  // Deja este campo en blanco para cargar la lista de reproducción
+        playerVars: {
+          listType: 'playlist',
+          list: getPlaylistId(playlistId)
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      event.target.loadPlaylist({
+        list: getPlaylistId(playlistId),
+        listType: 'playlist'
+      });
+    }
+
+    function getPlaylistId(playlistUrl) {
+      var regex = /[?&]list=([^&]+)/;
+      var match = regex.exec(playlistUrl);
+      if (match) {
+        return match[1];
+      }
+      return null;
+    }
+  </script>
+{% endblock %}

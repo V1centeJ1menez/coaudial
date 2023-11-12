@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="icon" href="{% static 'tasks/img/coaudial_icon.ico' %}" >
+    <link rel="stylesheet" href="/static/frontend/header.css">
+    
 </head>
 <body>
     <header>
@@ -12,55 +14,56 @@
         {% block header %}
         <!-- Contenido del encabezado por defecto -->
         {% endblock %}
-        <nav>
-            {% if request.user.is_authenticated %}
+        <ul class="buttons">
+    
+        {% if request.user.is_authenticated %}
 
-                <a href="{% url 'logout_view' %}">
-                    <button type="button">Cerrar sesión</button>
-                </a>
+            <li><a href="{% url 'logout_view' %}">Cerrar sesión
+            </a></li>
 
-                <a href="{% url 'profile' request.user.username %}">
-                    <button type="button">Mi Perfil</button>
-                </a>
+            <li><a href="{% url 'profile' request.user.username %}">
+                Mi Perfil
+            </a></li>
 
-                {% if request.path != '/cursos/' %}
-                <a href="{% url 'cursos' %}">
-                    <button type="button">Cursos</button>
-                </a>
-                {% endif %}
-                
-            {% else %}
-                {% if request.path != '/login/' %}
-                <a href="{% url 'login' %}">
-                    <button type="button">Iniciar sesión</button>
-                </a>
-                {% endif %}
-                {% if request.path != '/signup/' %}
-                <a href="{% url 'signup' %}">
-                    <button type="button">Registro</button>
-                </a>
-                {% endif %}
+            {% if request.path != '/cursos/' %}
+            <li><a href="{% url 'cursos' %}">
+                Cursos
+            </a></li>
             {% endif %}
             
-            {% if request.path != '/' %}
-            <a href="{% url 'index' %}">
-                <button type="button">Index</button>
-            </a>
+        {% else %}
+            {% if request.path != '/login/' %}
+            <li><a href="{% url 'login' %}">
+               Iniciar sesión
+            </a></li>
             {% endif %}
-            
-            {% if request.path != '/home/' %}
-            <a href="{% url 'home' %}">
-                <button type="button">Home</button>
-            </a>
+            {% if request.path != '/signup/' %}
+            <li><a href="{% url 'signup' %}">
+                Registro
+            </a></li>
             {% endif %}
-            
-            
-            {% if request.path != '/admin/' %}
-            <a href="{% url 'admin:index' %}">
-                <button type="button">AdminPage</button>
-            </a>
-            {% endif %}
-        </nav>
+        {% endif %}
+        
+        {% if request.path != '/' %}
+        <li><a href="{% url 'index' %}">
+           Index
+        </a></li>
+        {% endif %}
+        
+        {% if request.path != '/home/' %}
+        <li><a href="{% url 'home' %}">
+            Home
+        </a></li>
+        {% endif %}
+        
+        
+        {% if request.path != '/admin/' %}
+        <li><a href="{% url 'admin:index' %}">
+          AdminPage
+        </a></li>
+        {% endif %}
+        </ul>
+    
     </header>
     
 

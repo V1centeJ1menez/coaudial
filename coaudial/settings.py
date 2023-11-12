@@ -131,3 +131,8 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+GOOGLE_OAUTH2_KEY_FILE = os.path.join(BASE_DIR, '../tasks/credentials.json')
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '650265279914-k3sc7kbpu0s69ogs9pjvrm3mcc7t3m7t.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'

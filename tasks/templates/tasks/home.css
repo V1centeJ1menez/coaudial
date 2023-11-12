@@ -1,0 +1,166 @@
+* {
+   margin: 0;
+   padding: 0;
+   font-family: 'Roboto', sans-serif;
+   box-sizing: border-box;
+   
+}
+
+body {
+   background: rgba(107, 110, 168, 0.72);
+}
+
+
+header {
+    color: #FFF;
+    position: relative;
+    justify-content: space-between;
+    display: flex;
+    top: 4%;
+}
+
+.Page_titles {
+    font-size: 45;
+    position: relative;
+    left: 1%;
+    color: #FFF;
+}
+
+/*Menus*/
+.Menu {
+    position: relative;
+    display: flex;
+    right: 20px;
+    bottom: 5px;
+}
+
+.Profile_menu {
+    border-radius: 30px;
+    width: 49; 
+    height:48; 
+    background-color: #FFF;
+    margin-left: 5px;
+    position: relative;
+}
+
+
+
+
+.Line {
+    width: auto;
+    height: 4px;
+    background-color: black;
+    position: relative;
+    top: 4%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+/*barra de busqueda*/
+.Search_bar {
+    position: relative;
+    top: 70px;
+    left: 10%;
+    background: rgba(4, 6, 47, 0.68);
+    width: 260px;
+    height: 40px;
+    border-radius: 31.056px;
+
+}
+
+.Search_design {
+    position: absolute;
+    display: flex;
+    top: 28%;
+    left: 5%;
+    
+}
+
+.Search_icon {
+    position: relative;
+    bottom: 4px;
+
+}
+.Search_bar_design {
+    border: none;
+    background: transparent;
+    color: #FFF;
+    width: 220px;
+    border-radius: 20px;
+    font-size: 14;
+    position: absolute;
+    margin-left:  5px;
+    height: 39px;
+    bottom: 1%;
+    text-align: center;
+}
+
+/* perfiles*/
+
+
+.container_father {
+    width: auto;
+    position: relative;
+   display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.container {
+    width: 400px;
+height: 357px;
+flex-shrink: 0;
+border-radius: 16px;
+background-color: #fff;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 10px;
+}
+
+.Profile {
+    background-color: black;
+    width: 70%;
+    height: 20%;
+
+}
+/* pie de pagina*/
+
+.move_button {
+    display: flex;
+    justify-content: center;
+    margin: 80px;
+}
+
+.left_button_border {
+    background-color: #FFF;
+    margin-right: 15px;
+    border-radius: 50%;
+    width: 70px;
+    position: relative;
+}
+
+.left_button {
+    position: absolute;
+    background-color: #FFF;
+    width: 80px;
+    border-radius: 50%;
+}
+.right_button {
+    position: absolute;
+    background-color: #FFF;
+    width: 80px;
+    border-radius: 50%;
+
+}
+
+.right_button_border {
+    background-color: #FFF;
+    margin-left: 15px;
+    border-radius: 50%;
+    width: 70px;
+    position: relative;
+    
+}
+
