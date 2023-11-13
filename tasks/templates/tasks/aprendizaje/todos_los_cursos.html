@@ -1,18 +1,27 @@
 {% extends "tasks/bases/header_base.html" %}
 
-{% block content %}
-  <h2>Todos los Cursos</h2>
+{% block header %}
+<h2 class="letras">Todos los Cursos</h2>
+{% endblock %}
 
-  <ul>
+{% block content %}
+
+  <ul class="video-list">
     {% for curso in cursos %}
-      <li>
-        <h3>{{ curso.titulo }}</h3>
-        <p>Creado por: {{ curso.user_name}}</p>  {# Muestra el nombre del usuario creador #}
-        <!-- Mostrar la imagen del banner del curso -->
-        <img src="{{ curso.banner.url }}" alt="{{ curso.titulo }}">
-        <!-- Agregar un enlace para reproducir el curso -->
-        <a href="{% url 'reproducir_curso' curso.id %}">Reproducir Curso</a>
+      <li class="video-item">
+        <!-- Imagen del banner del curso como miniatura -->
+        <img class="thumbnail" src="{{ curso.banner.url }}" alt="{{ curso.titulo }}">
+        <div class="video-info">
+          <h3>{{ curso.titulo }}</h3>
+          <p>Creado por: {{ curso.user_name }}</p>
+          <!-- Enlace para reproducir el curso -->
+          <a href="{% url 'reproducir_curso' curso.id %}">Reproducir Curso</a>
+        </div>
       </li>
     {% endfor %}
   </ul>
+
+
+
+  <link rel="stylesheet" href="../../../static/frontend/all_course.css">
 {% endblock %}

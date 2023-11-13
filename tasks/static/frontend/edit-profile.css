@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+main {
+    background: white;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 4%;
+    font-weight: bold;
+    position: relative;
+    background-color: #4B4F7A;
+}
+
+.navbar a{
+    display: inline-block;
+    padding: 5px 50px 5px 0px;
+    position: relative;
+    color: #FFF;
+    text-decoration: none;
+    top: 50%;
+    
+}
+
+.navbar a:hover{
+    color: aqua;
+}
+
+.navbar {
+    background: linear-gradient(180deg, #121556 99.99%, rgba(255, 255, 255, 0.00) 100%);
+    text-align: center;
+    border-radius: 6%;
+
+}
+
+.navbar a:first-child {
+    margin-left: -10px;
+    }
+
+.logo-letras {
+    font-family: "Poppins", sans-serif;
+    color: white;
+}    
+
+.button {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    border: none;
+    border-radius: 24px;
+    padding: 8px 24px;
+    background-color: #4070f4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}

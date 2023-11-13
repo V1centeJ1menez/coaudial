@@ -3,25 +3,26 @@
 {% block title %}
   Mi Perfil - {{ user.user.first_name }}
 {% endblock %}
-
+<!-- No se que poner en esta parte o que funcion cumple, creo que es mejor poner directamente la entrada a la edicion del perfil. -->
 {% block header %}
   <h1> Mi Perfil </h1>
 {% endblock %}
 
 {% block content %}
-  <h1>{{ user.user.first_name}}</h1>
+  <div class="profile-card">
+    <div class="image">
+        <img src="" alt="" class="profile-img">
+    </div>
 
-  {% if user.user.user_type == 1 %}
-    <p> Este es mi perfil de usuario normal </p>
-  {% elif user.user.user_type == 2 %}
-    <p> Este es mi perfil de organización </p>
-  {% else %}
-    <p> No has especificado que tipo de usuario eres </p>
-  {% endif %}
+    <div class="text-data">
+        <h1 class="name">{{ user.user.first_name}}</h1>
+    </div>
 
-  <!-- Opciones de edición -->
-  <a href="{% url 'edit_profile' %}">
-    <button type="button">Editar Perfil</button>
-  </a>
-
+    <div class="buttons">
+        
+      <a href="{% url 'edit_profile' %}" class="button">Editar Perfil</a>
+         
+    </div>
+  </div>
+  <link rel="stylesheet" href="../../../static/frontend/profile_home.css">
 {% endblock %}

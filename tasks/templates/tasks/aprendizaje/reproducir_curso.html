@@ -1,50 +1,112 @@
 {% extends "tasks/bases/header_base.html" %}
 
 {% block content %}
-  <div class="course-content">
-    <div class="course-details">
-      <h2>{{ curso.titulo }} - {{ curso.user_name }}</h2>
-    </div>
-    <div class="video-player">
+<div class="course-content">
+  <div class="course-details">
+    <h2>{{ curso.titulo }} - {{ curso.user_name }}</h2>
+  </div>
+  <div class="video-player">
+    <div class="youtube-container">
       <div id="youtube-player"></div>
     </div>
-    <p>{{ curso.descripcion }}</p>
   </div>
+  <p>{{ curso.descripcion }}</p>
+</div>
+<!--Los estilos se pusieron directamente en el HTML ya que si se usaba una hoja css el reproductor fallaba por alguna razon-->
+<style>
+  body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #4B4F7A 40%, #f8f9fa 40%);
+  height: 150vh; 
+  }
 
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    var player;
-    var playlistId = '{{ curso.url_playlist }}';
+  .course-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
 
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('youtube-player', {
-        height: '315',
-        width: '560',
-        videoId: '',  // Deja este campo en blanco para cargar la lista de reproducción
-        playerVars: {
-          listType: 'playlist',
-          list: getPlaylistId(playlistId)
-        },
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-    }
+  .course-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #4B4F7A;
+  }
 
-    function onPlayerReady(event) {
-      event.target.loadPlaylist({
+  .video-player {
+    margin-top: 20px;
+  }
+
+  .youtube-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio for responsive design */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  #youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+
+  .course-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    margin-top: 20px;
+  }
+</style>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  var player;
+  var playlistId = '{{ curso.url_playlist }}';
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+      height: '100%',
+      width: '100%',
+      videoId: '',  // Deja este campo en blanco para cargar la lista de reproducción
+      playerVars: {
+        listType: 'playlist',
         list: getPlaylistId(playlistId),
-        listType: 'playlist'
-      });
-    }
-
-    function getPlaylistId(playlistUrl) {
-      var regex = /[?&]list=([^&]+)/;
-      var match = regex.exec(playlistUrl);
-      if (match) {
-        return match[1];
+        modestbranding: 1, // Oculta el logo de YouTube
+        color: 'white', // Color del reproductor
+        controls: 1, // Muestra los controles del reproductor
+        disablekb: 0, // Permite controlar el reproductor con el teclado
+        showinfo: 0, // Oculta información del video
+        rel: 0, // No muestra videos relacionados al final
+      },
+      events: {
+        'onReady': onPlayerReady
       }
-      return null;
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.loadPlaylist({
+      list: getPlaylistId(playlistId),
+      listType: 'playlist'
+    });
+  }
+
+  function getPlaylistId(playlistUrl) {
+    var regex = /[?&]list=([^&]+)/;
+    var match = regex.exec(playlistUrl);
+    if (match) {
+      return match[1];
     }
-  </script>
+    return null;
+  }
+</script>
+
 {% endblock %}
