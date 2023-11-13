@@ -1,7 +1,7 @@
 {% extends "../bases/profile_base.html" %}
 
 {% block title %}
-  Perfil - {{ user.title}}
+  Perfil - {{ user.title }}
 {% endblock %}
 
 {% block header %}
@@ -9,19 +9,16 @@
   <!-- Nombre de usuario -->
   {% if request.user.is_authenticated %}
   <a href="{% url 'profile' user.user.username %}">
-
-    <button type="button">Mi Perfil</button> 
+    <button type="button">Mi Perfil</button>
   </a>
   {% endif %}
-  
 {% endblock %}
 
 {% block content %}
   <!-- Imagen de la fundación -->
   {% if user.foundation_image %}
     <div>
-      <img src="{{ user.foundation_image.url }}" alt="Imagen de la fundación"
-     class="img">
+      <img src="{{ user.foundation_image.url }}" alt="Imagen de la fundación" class="img">
     </div>
   {% endif %}
 
@@ -45,19 +42,15 @@
   <div class="container">
     <p class="text_user">{{ user.about }}</p>
   </div>
-  
-
-  <!-- Información adicional -->
-  <p>{{ user.additional_info }}</p>
 
   <!-- Botón de redirección -->
   {% if user.redirect_url %}
+  <div class="container_link">
   <div class="link_page">
-    <a href="{{ user.redirect_url }}">
-      Visitanos
-    </a>
+    <a href="{{ user.redirect_url }}">Visítanos</a>
+  </div>
+  </div>
   {% endif %}
-
 {% endblock %}
 
 {% block footer %}

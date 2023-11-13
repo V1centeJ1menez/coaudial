@@ -4,9 +4,9 @@ body {
     font-family: montserrat;
     background: linear-gradient(150deg, #6C3483, #58D68D);
     height: 100vh;
-}
+  }
 
-.registro-boton {
+  .registro-boton {
     color: black;
     border: 1px solid;
     width: 20%;
@@ -16,15 +16,15 @@ body {
     outline: none;
     font-size: 14px;
     border-radius: 25px;
-}
+  }
 
-.registro-boton:hover{
+  .registro-boton:hover {
     border-color: purple;
     transition: .5s;
     color: white;
-}
+  }
 
-.container {
+  .container {
     background-color: white;
     position: absolute;
     transform: translate(-50%, -50%);
@@ -35,10 +35,9 @@ body {
     border-radius: 10px;
     padding: 0 40px;
     box-sizing: border-box;
-}
+  }
 
-.container h2{
+  .container h2 {
     text-align: center;
     padding: 0 0 20px 0;
-
-}
+  }

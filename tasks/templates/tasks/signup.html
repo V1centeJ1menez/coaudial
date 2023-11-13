@@ -1,25 +1,19 @@
-{% extends "tasks/bases/header_base.html" %}
+{% block header%}
+<head>
+  <link rel="icon" href="/static/task/img/coaudial_icon.ico">
+</head>
+{% endblock %}
 
 {% block content%}
 <div class="container">
-  
-  <h2>Registro</h2>
+  <h2>Registro</h2><!-- Mover el h2 arriba del formulario -->
   {% if form.errors %}
-
   <p style="color: red;"> Por favor revisa este campo</p>
-
   {% endif %}
-
   <form action="{% url 'signup' %}" method="POST">{% csrf_token %}
-
     {{ register_form.as_p }}
-    
     <input type="submit" class="registro-boton" value="Registrarse">
-
   </form>
-
   <link rel="stylesheet" href="../../static/frontend/registro.css">
-
 </div>
 {% endblock %}
-
