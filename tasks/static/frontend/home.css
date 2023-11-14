@@ -10,18 +10,19 @@ header {
     position: relative;
     padding-bottom: 1%;
     padding-left: 1%;
+    background-color:  #E8E6FA;
 }
 
 .Page_titles {
-    color: #FFF;
+    color:#E8E6FA;
     font-size: 45px;
 }
 
 body {
-   background: rgba(107, 110, 168, 0.72);
+   background: linear-gradient(150deg, #e1c9f8, #988dae, #e9c9f8, #c9d4f8, #8d95ae);
    text-decoration: none;
 }
-
+/*rgba(107, 110, 168, 0.72)*/
 /*Menus*/
 
 .Line {
@@ -47,7 +48,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(4, 6, 47, 0.68);
+    background:  #6C3483;
     width: 200px;
     border-radius: 31.056px;
 
@@ -79,6 +80,7 @@ flex-shrink: 0;
 border-radius: 16px;
 background-color: #fff;
 margin: 10px;
+text-decoration: none;
 }
 
 .ong_banner {

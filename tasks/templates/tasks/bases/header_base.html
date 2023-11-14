@@ -5,12 +5,55 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="icon" href="{% static 'tasks/img/coaudial_icon.ico' %}" >
-    <link rel="stylesheet" href="/static/frontend/header.css">
-    
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+ }
+ 
+ header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding-right: 5%;
+     padding-top: 1%;
+     font-weight: bold;
+     position: relative;
+ }
+
+.buttons li{
+    display: inline-block;
+    padding: 10px 20px;
+    position: relative;
+  
+}
+
+.buttons li a{
+    color: #8d95ae;
+    text-decoration: none;
+    position: relative;
+    top: 50%;
+    font-size: large;
+}
+
+.buttons a:hover{
+    color: black;
+}
+
+
+.buttons {
+    background: transparent;
+    text-align: center;
+    border-radius: 6%;
+}
+
+    </style>
 </head>
 <body>
     <header>
-        
+        <!-- Aquí puedes poner tu barra de navegación, logo, etc. -->
         {% block header %}
         <!-- Contenido del encabezado por defecto -->
         {% endblock %}
@@ -78,5 +121,6 @@
         <!-- Aquí puedes poner tu pie de página -->
         {% endblock %}
     </footer>
+    
 </body>
 </html>
