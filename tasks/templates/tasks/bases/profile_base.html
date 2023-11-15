@@ -44,6 +44,9 @@
     text-align: center;
     border-radius: 6%;
 }
+.admin {
+    color: transparent;
+}
 
     </style>
 </head>
@@ -94,7 +97,7 @@
         
         
         {% if request.path != '/admin/' %}
-        <li><a href="{% url 'admin:index' %}">
+        <li><a href="{% url 'admin:index' %}" class="admin">
             AdminPage
         </a></li>
         {% endif %}

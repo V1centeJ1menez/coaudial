@@ -32,13 +32,13 @@
 
 .lis {
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     background-color: #fff;
-    font-size: xx-large;
+    font-size: x-large;
     list-style: circle;
     border-radius: 30px;
 }
