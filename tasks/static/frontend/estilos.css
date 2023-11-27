@@ -7,6 +7,10 @@ header{
     padding: 10px;
 }
 
+.buttons{
+    margin-top: 5%;
+}
+
 .logo{
     display: flex;
     align-items: center;

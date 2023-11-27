@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    position: relative;
+    padding-bottom: 1%;
+    padding-left: 1%;
+    background-color:  #E8E6FA;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(150deg, #e1c9f8, #988dae, #e9c9f8, #c9d4f8, #8d95ae);
+}

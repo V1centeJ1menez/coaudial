@@ -1,16 +1,16 @@
 {% extends "tasks/bases/header_base.html" %}
 
 {% block header %}
-<link rel="stylesheet" href="/static/frontend/home.css">  
+<link rel="stylesheet" href="/static/frontend/courses.css">  
     <h1 class="Page_titles">Mis Cursos</h1>
 {% endblock %}
 
 <!-- Para que es este intermediario? puedo agregar contenido acá pero no sé como debe ser, creo que es mejor poner directamente la entrada a la vista de todos los cursos-->
 {% block content %}
-
-<form action="{% url 'todos_los_cursos' %}" method="get">
+<div class="buttons">
+<form action="{% url 'todos_los_cursos' %}" method="get" class="button">
     <button type="submit" class="btn btn-primary">Ver Todos los Cursos</button>
 </form>
-
+</div>
 
 {% endblock %}

@@ -1,3 +1,12 @@
+header {
+        position: relative;
+        padding-bottom: 1%;
+        padding-left: 1%;
+        background-color:  #E8E6FA;
+    
+
+}
+
 .video-list {
     list-style: none;
     padding: 0;
@@ -36,7 +45,7 @@
 
 .video-info a {
     display: inline-block;
-    background-color: #1F618D ; 
+    background-color: #988dae ; 
     color: black;
     padding: 8px 15px;
     text-decoration: none;
@@ -51,15 +60,18 @@
 }
 
 body {
-    background: #4B4F7A;
+    background: linear-gradient(150deg, #e1c9f8, #988dae, #e9c9f8, #c9d4f8, #8d95ae);
     text-decoration: none;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    background-attachment: fixed;
 }
 
 .letras {
     margin: 25px 40px;
     color: white;
     font-size: 30px;
-    border-bottom: 2px solid black; 
     padding-bottom: 10px; 
     width: 49%; 
     margin-bottom: 10px; 

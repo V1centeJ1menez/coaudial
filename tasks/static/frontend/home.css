@@ -14,25 +14,17 @@ header {
 }
 
 .Page_titles {
-    color:#E8E6FA;
+    color:#FFF;
     font-size: 45px;
 }
 
 body {
-   background: linear-gradient(150deg, #e1c9f8, #988dae, #e9c9f8, #c9d4f8, #8d95ae);
-   text-decoration: none;
-}
-/*rgba(107, 110, 168, 0.72)*/
-/*Menus*/
-
-.Line {
-    width: auto;
-    height: 4px;
-    background-color: black;
-    position: relative;
-    top: 4%;
-    margin-left: 1%;
-    margin-right: 1%;
+    background: linear-gradient(150deg, #e1c9f8, #988dae, #e9c9f8, #c9d4f8, #8d95ae);
+    text-decoration: none;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    background-attachment: fixed;
 }
 
 /*barra de busqueda*/
@@ -99,42 +91,5 @@ text-decoration: none;
     position: relative;
 
 }
-/* pie de pagina*/
 
-.move_button {
-    display: flex;
-    justify-content: center;
-    margin: 80px;
-}
-
-.left_button_border {
-    background-color: #FFF;
-    margin-right: 15px;
-    border-radius: 50%;
-    width: 70px;
-    position: relative;
-}
-
-.left_button {
-    position: absolute;
-    background-color: #FFF;
-    width: 80px;
-    border-radius: 50%;
-}
-.right_button {
-    position: absolute;
-    background-color: #FFF;
-    width: 80px;
-    border-radius: 50%;
-
-}
-
-.right_button_border {
-    background-color: #FFF;
-    margin-left: 15px;
-    border-radius: 50%;
-    width: 70px;
-    position: relative;
-    
-}
 
