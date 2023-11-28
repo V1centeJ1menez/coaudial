@@ -1,20 +1,20 @@
 {% extends "tasks/bases/header_base.html" %}
 
 {% block header %}
-    <link rel="stylesheet" href="/static/frontend/courses.css">  
+    <link rel="stylesheet" href="/static/frontend/course.css">  
     <h1 class="Page_titles">Mis Cursos</h1>
 {% endblock %}
 
 {% block content %}
 <div class="buttons">
     <form action="{% url 'todos_los_cursos' %}" method="get" class="button">
-        Ver todos los Cursos
+        <button type="submit" class="btn btn-primary">Ver Todos los Cursos</button>
     </form>
 
     <form method="post" action="{% url 'crear_curso' %}" class="button">
         {% csrf_token %}
         {{ form.as_p }}
-        Crear Curso
+        <button type="submit" class="btn btn-primary">Crear curso</button>
     </form>
 </div>
 {% endblock %}

@@ -12,9 +12,23 @@ header {
 }
 
 body {
+    background: #fff;
+    background-repeat: no-repeat;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(150deg, #e1c9f8, #988dae, #e9c9f8, #c9d4f8, #8d95ae);
 }
+
+.row .mt-2 a button{
+    background: transparent;
+    margin: 10px 0;
+}
+
+h4 {
+    font-size: 2em;
+}
+
+.image-icon {
+  object-fit: fill;
+  border-radius: 50px;
+}
+ 
+  

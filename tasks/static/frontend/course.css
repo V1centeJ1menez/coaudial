@@ -5,6 +5,9 @@
     box-sizing: border-box;
     
  }
+ h1 {
+    color: #fff;
+ }
  
  header {
      position: relative;
@@ -35,6 +38,7 @@ button {
     border-radius: 30px;
     color: #fff;
     font-size: 70px;
+    margin: 10px 0;
     border-color:  #6C3483;
     
 }

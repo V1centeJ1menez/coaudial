@@ -96,3 +96,10 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+.image-icon {
+    object-fit: fill;
+    border-radius: 50px;
+  }
+   
+    

@@ -6,16 +6,15 @@
 
 {% block header %}
   <h1> Editar Plantilla </h1>
-
-  <a href="{% url 'profile' request.user.username %}">
-    <button type="button">Mi Perfil</button>
-</a>
+  <link rel="stylesheet" href="/static/frontend/edit_organizations.css">
 {% endblock %}
 
 {% block content %}
+<div class="container">
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Guardar cambios</button>
   </form>
+</div>
 {% endblock %}
